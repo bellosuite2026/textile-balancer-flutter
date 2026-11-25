@@ -15,6 +15,16 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+// Certains plugins (ex. file_picker 8.x) compilent encore contre android-34 alors que
+// leurs dépendances AndroidX exigent compileSdk >= 36 : on aligne les bibliothèques.
+subprojects {
+    val alignCompileSdk = {
+        extensions.findByType(com.android.build.api.dsl.LibraryExtension::class.java)?.let { ext ->
+            if ((ext.compileSdk ?: 0) < 36) ext.compileSdk = 36
+        }
+    }
+    if (state.executed) alignCompileSdk() else afterEvaluate { alignCompileSdk() }
+}
 subprojects {
     project.evaluationDependsOn(":app")
 }

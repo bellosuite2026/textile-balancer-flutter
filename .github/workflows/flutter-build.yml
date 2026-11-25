@@ -132,7 +132,7 @@ jobs:
     name: Deploy to Cloudflare Pages
     runs-on: ubuntu-latest
     needs: build-web
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     steps:
       - name: Download Web artifact
         uses: actions/download-artifact@v4
