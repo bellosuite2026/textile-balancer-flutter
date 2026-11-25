@@ -11,6 +11,7 @@ import '../../state/app_state.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../twin/twin_screen.dart';
+import '../workshop/plan_editor_screen.dart';
 
 class AnalysisTool {
   const AnalysisTool(this.key, this.title, this.text, this.icon, {this.online = false, this.needsRun = true});
@@ -24,10 +25,13 @@ class AnalysisTool {
 
 const analysisTools = [
   AnalysisTool('twin', 'Jumeau numérique 2D', 'Ligne animée, encours, goulot, scénarios « et si », réel vs simulé.', Icons.view_in_ar_outlined),
+  AnalysisTool('plan', "Plan d'atelier", 'Murs, allées, zones et machines ; glisser-déposer, liaison machine ↔ station, fond calibré.',
+      Icons.map_outlined, needsRun: false),
 ];
 
 Widget? toolScreen(String key, String runId) => switch (key) {
       'twin' => TwinScreen(runId: runId),
+      'plan' => const WorkshopPlansScreen(),
       _ => null,
     };
 

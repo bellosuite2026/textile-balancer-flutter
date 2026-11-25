@@ -54,7 +54,7 @@ Map<String, dynamic> newWorkshopPlan({required String id, String name = "Plan de
       'width_m': width,
       'length_m': length,
       'background': null,
-      'elements': <Map<String, dynamic>>[],
+      'elements': <dynamic>[],
       'settings': <String, dynamic>{'grid_m': 0.5},
       'cloud_id': null,
       'dirty': true,
