@@ -64,7 +64,7 @@ Dépendances Linux (Debian / Ubuntu) :
 sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
 ```
 
-Android : JDK 17 et SDK Android. L'APK de release est pour l'instant signé avec la clé de
+Android : JDK 21 (requis par le plugin Android Gradle 9 ; le code est compilé en Java 17) et SDK Android. L'APK de release est pour l'instant signé avec la clé de
 débogage (installation directe ; la signature Play Store est prévue en phase 2).
 
 Windows : Visual Studio 2022 avec la charge « Développement Desktop en C++ ».
