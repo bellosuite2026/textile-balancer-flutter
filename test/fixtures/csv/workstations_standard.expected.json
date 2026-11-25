@@ -1,0 +1,114 @@
+[
+ {
+  "id": "WS01",
+  "name": "Poste préparation & lecture plan",
+  "machine_type": "table_travail",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS02",
+  "name": "Piqueuse plate 1 (assemblage)",
+  "machine_type": "piqueuse_plate",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS03",
+  "name": "Piqueuse plate 2 (assemblage)",
+  "machine_type": "piqueuse_plate",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS04",
+  "name": "Piqueuse plate 3 (finitions)",
+  "machine_type": "piqueuse_plate",
+  "available": true,
+  "max_workers": 1,
+  "section": "Finition"
+ },
+ {
+  "id": "WS05",
+  "name": "Surjeteuse 5 fils (côtés, manches)",
+  "machine_type": "surjeteuse_5_fils",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS06",
+  "name": "Surjeteuse 4 fils (manches, poches)",
+  "machine_type": "surjeteuse_4_fils",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS07",
+  "name": "Surjeteuse 3 fils (poignets, details)",
+  "machine_type": "surjeteuse_3_fils",
+  "available": true,
+  "max_workers": 1,
+  "section": "Montage"
+ },
+ {
+  "id": "WS08",
+  "name": "Piqueuse 2 aiguilles (ourlets)",
+  "machine_type": "piqueuse_2_aiguilles",
+  "available": true,
+  "max_workers": 1,
+  "section": "Finition"
+ },
+ {
+  "id": "WS09",
+  "name": "Piqueuse boutonnières (auto)",
+  "machine_type": "piqueuse_boutonniere",
+  "available": true,
+  "max_workers": 1,
+  "section": "Finition"
+ },
+ {
+  "id": "WS10",
+  "name": "Piqueuse boutons (auto)",
+  "machine_type": "piqueuse_bouton",
+  "available": true,
+  "max_workers": 1,
+  "section": "Finition"
+ },
+ {
+  "id": "WS11",
+  "name": "Poste contrôle qualité",
+  "machine_type": "table_controle",
+  "available": true,
+  "max_workers": 1,
+  "section": "Qualite"
+ },
+ {
+  "id": "WS12",
+  "name": "Presse vapeur (repassage/formage)",
+  "machine_type": "presse_vapeur",
+  "available": true,
+  "max_workers": 1,
+  "section": "Finition"
+ },
+ {
+  "id": "WS13",
+  "name": "Poste pliage & emballage",
+  "machine_type": "table_travail",
+  "available": true,
+  "max_workers": 1,
+  "section": "Expedition"
+ },
+ {
+  "id": "WS14",
+  "name": "Poste étiquetage & cartonnage",
+  "machine_type": "table_travail",
+  "available": true,
+  "max_workers": 1,
+  "section": "Expedition"
+ }
+]

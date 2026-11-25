@@ -1,0 +1,136 @@
+{
+ "name": "manuel_abcd",
+ "description": "Exemple RPW du manuel (A,B,C,D ; cadence 1,0)",
+ "solver": "rpw",
+ "kind": "balance",
+ "problem": {
+  "name": "manuel A-B-C-D",
+  "target_cycle_time": 1.0,
+  "operations": [
+   {
+    "id": "A",
+    "name": "A",
+    "duration": 0.4,
+    "predecessors": [],
+    "machine_type": "",
+    "required_skills": [],
+    "section": "",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "B",
+    "name": "B",
+    "duration": 0.5,
+    "predecessors": [
+     "A"
+    ],
+    "machine_type": "",
+    "required_skills": [],
+    "section": "",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "C",
+    "name": "C",
+    "duration": 0.6,
+    "predecessors": [
+     "A"
+    ],
+    "machine_type": "",
+    "required_skills": [],
+    "section": "",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "D",
+    "name": "D",
+    "duration": 0.3,
+    "predecessors": [
+     "B",
+     "C"
+    ],
+    "machine_type": "",
+    "required_skills": [],
+    "section": "",
+    "optional": false,
+    "task_type": "VA"
+   }
+  ],
+  "workstations": [],
+  "workers": [],
+  "max_stations": null,
+  "forced_assignments": {},
+  "forbidden_assignments": {},
+  "same_station_groups": [],
+  "max_machines_per_station": 3,
+  "machine_change_time": 0.0,
+  "section_policy": "prefer",
+  "split_mode": "share"
+ },
+ "expected": {
+  "success": true,
+  "compliant": true,
+  "status": "FEASIBLE",
+  "solver": "RPW",
+  "solve_time_seconds": 0.0,
+  "target_cycle_time": 1.0,
+  "stations_used": 2,
+  "actual_cycle_time": 1.0,
+  "efficiency": 90.0,
+  "balance_delay": 10.0,
+  "smoothness_index": 0.2,
+  "operators": 2,
+  "station_details": [
+   {
+    "station": 1,
+    "total_time": 1.0,
+    "load_pct": 100.0,
+    "operations": [
+     "A",
+     "C"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [],
+    "sections": [],
+    "worker_ids": []
+   },
+   {
+    "station": 2,
+    "total_time": 0.8,
+    "load_pct": 80.0,
+    "operations": [
+     "B",
+     "D"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [],
+    "sections": [],
+    "worker_ids": []
+   }
+  ],
+  "operation_assignments": {
+   "A": 1,
+   "C": 1,
+   "B": 2,
+   "D": 2
+  },
+  "worker_assignments": {},
+  "warnings": [
+   "Solution RPW (heuristique) - non garantie optimale"
+  ],
+  "error_message": "",
+  "violations": []
+ },
+ "precheck": {
+  "feasible": true,
+  "issues": [],
+  "validation_errors": []
+ }
+}

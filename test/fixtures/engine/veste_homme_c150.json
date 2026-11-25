@@ -1,0 +1,993 @@
+{
+ "name": "veste_homme_c150",
+ "description": "Veste homme 31 op., opérations seules, cadence 1,5",
+ "solver": "rpw",
+ "kind": "balance",
+ "problem": {
+  "name": "Veste homme",
+  "target_cycle_time": 1.5,
+  "operations": [
+   {
+    "id": "OP010",
+    "name": "Étude gamme & lecture plan",
+    "duration": 0.35,
+    "predecessors": [],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "lecture_plan"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP020",
+    "name": "Préparation pièces (tri, marquage, thermocollage renforts)",
+    "duration": 0.6,
+    "predecessors": [
+     "OP010"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "tri_pieces",
+     "marquage_pieces",
+     "thermocollage"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP030",
+    "name": "Montage poches poitrine (passepoil)",
+    "duration": 1.1,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "piqure_apparente",
+     "pose_poche"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP040",
+    "name": "Montage poches basses (à rabat ou passepoil)",
+    "duration": 1.3,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "piqure_apparente",
+     "pose_poche"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP050",
+    "name": "Montage poches intérieures",
+    "duration": 0.75,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP060",
+    "name": "Montage épaule (devant/dos)",
+    "duration": 0.65,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP070",
+    "name": "Montage côtés (devant/dos)",
+    "duration": 0.75,
+    "predecessors": [
+     "OP060"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP080",
+    "name": "Préparation manches (surjet bas + thermocollage tête)",
+    "duration": 0.55,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "surjeteuse_4_fils",
+    "required_skills": [
+     "surjet_4_fils",
+     "thermocollage"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP090",
+    "name": "Montage manches (emboitage tête de manche)",
+    "duration": 1.4,
+    "predecessors": [
+     "OP070",
+     "OP080"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe",
+     "montage_manche"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP100",
+    "name": "Surjet côtés + emmanchures",
+    "duration": 0.6,
+    "predecessors": [
+     "OP090"
+    ],
+    "machine_type": "surjeteuse_5_fils",
+    "required_skills": [
+     "surjet_5_fils"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP110",
+    "name": "Préparation col (thermocollage, pliage, piqûre)",
+    "duration": 1.0,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "thermocollage",
+     "piqure_apparente"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP120",
+    "name": "Pose col (pied de col + col) - opération critique",
+    "duration": 1.5,
+    "predecessors": [
+     "OP100",
+     "OP110"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe",
+     "pose_col"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP130",
+    "name": "Piqure col (piqûre apparente double)",
+    "duration": 0.8,
+    "predecessors": [
+     "OP120"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "piqure_apparente"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP140",
+    "name": "Préparation revers/collet (si veste)",
+    "duration": 0.7,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "thermocollage"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP150",
+    "name": "Montage revers/collet",
+    "duration": 0.95,
+    "predecessors": [
+     "OP120",
+     "OP140"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP160",
+    "name": "Préparation poignets (thermocollage, surjet)",
+    "duration": 0.45,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "surjeteuse_3_fils",
+    "required_skills": [
+     "surjet_3_fils",
+     "thermocollage"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP170",
+    "name": "Pose poignets (manchette + poignet)",
+    "duration": 1.1,
+    "predecessors": [
+     "OP090",
+     "OP160"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe",
+     "pose_poignet"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP180",
+    "name": "Piqure poignets",
+    "duration": 0.5,
+    "predecessors": [
+     "OP170"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "piqure_apparente"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP190",
+    "name": "Montage doublure (corps + manches) - assemblage",
+    "duration": 1.8,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP200",
+    "name": "Pose doublure dans veste (retourné + piqûre)",
+    "duration": 1.6,
+    "predecessors": [
+     "OP190",
+     "OP130",
+     "OP150",
+     "OP180"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP210",
+    "name": "Boutonnières (corps + manches)",
+    "duration": 0.85,
+    "predecessors": [
+     "OP120",
+     "OP180"
+    ],
+    "machine_type": "piqueuse_boutonniere",
+    "required_skills": [
+     "piqueuse_boutonniere"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP220",
+    "name": "Pose boutons (corps + manches)",
+    "duration": 0.55,
+    "predecessors": [
+     "OP210"
+    ],
+    "machine_type": "piqueuse_bouton",
+    "required_skills": [
+     "piqueuse_bouton"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP230",
+    "name": "Passants & oeillets (manches, dos)",
+    "duration": 0.4,
+    "predecessors": [
+     "OP090"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "pose_passant"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP240",
+    "name": "Ourlet bas veste (doublure + tissu)",
+    "duration": 0.7,
+    "predecessors": [
+     "OP200"
+    ],
+    "machine_type": "piqueuse_2_aiguilles",
+    "required_skills": [
+     "piqueuse_2_aiguilles",
+     "ourlet"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP250",
+    "name": "Ourlet bas manches (doublure)",
+    "duration": 0.45,
+    "predecessors": [
+     "OP200"
+    ],
+    "machine_type": "piqueuse_2_aiguilles",
+    "required_skills": [
+     "piqueuse_2_aiguilles",
+     "ourlet"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP260",
+    "name": "Coupe fils, nettoyage, contrôle interne",
+    "duration": 0.35,
+    "predecessors": [
+     "OP220",
+     "OP240",
+     "OP250",
+     "OP230"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP270",
+    "name": "Contrôle final visuel & mesures",
+    "duration": 0.5,
+    "predecessors": [
+     "OP260"
+    ],
+    "machine_type": "table_controle",
+    "required_skills": [
+     "controle_visuel",
+     "controle_mesures",
+     "controle_normes"
+    ],
+    "section": "Qualite",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP280",
+    "name": "Repassage complet (corps, manches, col)",
+    "duration": 0.85,
+    "predecessors": [
+     "OP270"
+    ],
+    "machine_type": "presse_vapeur",
+    "required_skills": [
+     "presse_vapeur",
+     "formage_vapeur"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP290",
+    "name": "Pliage veste (méthode spécifique)",
+    "duration": 0.4,
+    "predecessors": [
+     "OP280"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "pliage_specifique"
+    ],
+    "section": "Expedition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP300",
+    "name": "Mise sous housse & étiquetage final",
+    "duration": 0.3,
+    "predecessors": [
+     "OP290"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "mise_sous_poche",
+     "etiquetage_final"
+    ],
+    "section": "Expedition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP310",
+    "name": "Cartonnage & palettisation",
+    "duration": 0.2,
+    "predecessors": [
+     "OP300"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "cartonnage"
+    ],
+    "section": "Expedition",
+    "optional": false,
+    "task_type": "VA"
+   }
+  ],
+  "workstations": [],
+  "workers": [],
+  "max_stations": null,
+  "forced_assignments": {},
+  "forbidden_assignments": {},
+  "same_station_groups": [],
+  "max_machines_per_station": 3,
+  "machine_change_time": 0.0,
+  "section_policy": "prefer",
+  "split_mode": "share"
+ },
+ "expected": {
+  "success": true,
+  "compliant": true,
+  "status": "FEASIBLE",
+  "solver": "RPW",
+  "solve_time_seconds": 0.0,
+  "target_cycle_time": 1.5,
+  "stations_used": 17,
+  "actual_cycle_time": 1.5,
+  "efficiency": 94.1,
+  "balance_delay": 5.9,
+  "smoothness_index": 0.5,
+  "operators": 17,
+  "station_details": [
+   {
+    "station": 1,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP010",
+     "OP020",
+     "OP080"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "table_travail",
+     "surjeteuse_4_fils"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 2,
+    "total_time": 1.4,
+    "load_pct": 93.3,
+    "operations": [
+     "OP060",
+     "OP070"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 3,
+    "total_time": 1.4,
+    "load_pct": 93.3,
+    "operations": [
+     "OP090"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 4,
+    "total_time": 1.45,
+    "load_pct": 96.7,
+    "operations": [
+     "OP110",
+     "OP160"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "table_travail",
+     "surjeteuse_3_fils"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 5,
+    "total_time": 1.3,
+    "load_pct": 86.7,
+    "operations": [
+     "OP100",
+     "OP140"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "surjeteuse_5_fils",
+     "table_travail"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 6,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP120"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 7,
+    "total_time": 1.4,
+    "load_pct": 93.3,
+    "operations": [
+     "OP170",
+     "OP190"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP190": 0.3
+    },
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 8,
+    "total_time": 1.3,
+    "load_pct": 86.7,
+    "operations": [
+     "OP180",
+     "OP130"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Finition"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 9,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP190"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP190": 1.5
+    },
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 10,
+    "total_time": 1.45,
+    "load_pct": 96.7,
+    "operations": [
+     "OP150",
+     "OP200",
+     "OP230"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP200": 0.1
+    },
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 11,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP200"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP200": 1.5
+    },
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 12,
+    "total_time": 1.4,
+    "load_pct": 93.3,
+    "operations": [
+     "OP210",
+     "OP220"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_boutonniere",
+     "piqueuse_bouton"
+    ],
+    "sections": [
+     "Finition"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 13,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP240",
+     "OP250",
+     "OP260"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_2_aiguilles",
+     "table_travail"
+    ],
+    "sections": [
+     "Finition"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 14,
+    "total_time": 1.35,
+    "load_pct": 90.0,
+    "operations": [
+     "OP270",
+     "OP280"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "table_controle",
+     "presse_vapeur"
+    ],
+    "sections": [
+     "Finition",
+     "Qualite"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 15,
+    "total_time": 1.3,
+    "load_pct": 86.7,
+    "operations": [
+     "OP040"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 16,
+    "total_time": 1.5,
+    "load_pct": 100.0,
+    "operations": [
+     "OP030",
+     "OP290"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate",
+     "table_travail"
+    ],
+    "sections": [
+     "Expedition",
+     "Montage"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 17,
+    "total_time": 1.25,
+    "load_pct": 83.3,
+    "operations": [
+     "OP050",
+     "OP300",
+     "OP310"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate",
+     "table_travail"
+    ],
+    "sections": [
+     "Expedition",
+     "Montage"
+    ],
+    "worker_ids": []
+   }
+  ],
+  "operation_assignments": {
+   "OP010": 1,
+   "OP020": 1,
+   "OP080": 1,
+   "OP060": 2,
+   "OP070": 2,
+   "OP090": 3,
+   "OP110": 4,
+   "OP160": 4,
+   "OP100": 5,
+   "OP140": 5,
+   "OP120": 6,
+   "OP170": 7,
+   "OP190": 7,
+   "OP180": 8,
+   "OP130": 8,
+   "OP150": 10,
+   "OP200": 10,
+   "OP230": 10,
+   "OP210": 12,
+   "OP220": 12,
+   "OP240": 13,
+   "OP250": 13,
+   "OP260": 13,
+   "OP270": 14,
+   "OP280": 14,
+   "OP040": 15,
+   "OP030": 16,
+   "OP290": 16,
+   "OP050": 17,
+   "OP300": 17,
+   "OP310": 17
+  },
+  "worker_assignments": {},
+  "warnings": [
+   "Solution RPW (heuristique) - non garantie optimale",
+   "[OP_GT_CYCLE] OP190 (1.80 min) dépasse le cycle 1.50 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "[OP_GT_CYCLE] OP200 (1.60 min) dépasse le cycle 1.50 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "⚠️ Station 1 : aucun poste disponible pour la/les machine(s) table_travail, surjeteuse_4_fils",
+   "⚠️ Station 2 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 3 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 4 : aucun poste disponible pour la/les machine(s) table_travail, surjeteuse_3_fils",
+   "⚠️ Station 5 : aucun poste disponible pour la/les machine(s) surjeteuse_5_fils, table_travail",
+   "⚠️ Station 6 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 7 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 8 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 9 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 10 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 11 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 12 : aucun poste disponible pour la/les machine(s) piqueuse_boutonniere, piqueuse_bouton",
+   "⚠️ Station 13 : aucun poste disponible pour la/les machine(s) piqueuse_2_aiguilles, table_travail",
+   "⚠️ Station 14 : aucun poste disponible pour la/les machine(s) table_controle, presse_vapeur",
+   "⚠️ Station 15 : aucun poste disponible pour la/les machine(s) piqueuse_plate",
+   "⚠️ Station 16 : aucun poste disponible pour la/les machine(s) piqueuse_plate, table_travail",
+   "⚠️ Station 17 : aucun poste disponible pour la/les machine(s) piqueuse_plate, table_travail",
+   "ℹ️ OP190 est partagée entre les stations 7, 9 (0.30 + 1.50 min)",
+   "ℹ️ OP200 est partagée entre les stations 10, 11 (0.10 + 1.50 min)"
+  ],
+  "error_message": "",
+  "violations": []
+ },
+ "precheck": {
+  "feasible": true,
+  "issues": [
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP190 (1.80 min) dépasse le cycle 1.50 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   },
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP200 (1.60 min) dépasse le cycle 1.50 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   }
+  ],
+  "validation_errors": [
+   "Type machine requis 'piqueuse_2_aiguilles' non disponible dans le parc",
+   "Type machine requis 'surjeteuse_5_fils' non disponible dans le parc",
+   "Type machine requis 'table_controle' non disponible dans le parc",
+   "Type machine requis 'piqueuse_bouton' non disponible dans le parc",
+   "Type machine requis 'surjeteuse_3_fils' non disponible dans le parc",
+   "Type machine requis 'table_travail' non disponible dans le parc",
+   "Type machine requis 'piqueuse_plate' non disponible dans le parc",
+   "Type machine requis 'surjeteuse_4_fils' non disponible dans le parc",
+   "Type machine requis 'presse_vapeur' non disponible dans le parc",
+   "Type machine requis 'piqueuse_boutonniere' non disponible dans le parc",
+   "Compétence requise 'montage_manche' non disponible dans l'effectif",
+   "Compétence requise 'thermocollage' non disponible dans l'effectif",
+   "Compétence requise 'surjet_5_fils' non disponible dans l'effectif",
+   "Compétence requise 'presse_vapeur' non disponible dans l'effectif",
+   "Compétence requise 'piqueuse_boutonniere' non disponible dans l'effectif",
+   "Compétence requise 'couture_courbe' non disponible dans l'effectif",
+   "Compétence requise 'piqure_apparente' non disponible dans l'effectif",
+   "Compétence requise 'pose_poche' non disponible dans l'effectif",
+   "Compétence requise 'tri_pieces' non disponible dans l'effectif",
+   "Compétence requise 'ourlet' non disponible dans l'effectif",
+   "Compétence requise 'pose_col' non disponible dans l'effectif",
+   "Compétence requise 'surjet_3_fils' non disponible dans l'effectif",
+   "Compétence requise 'pose_poignet' non disponible dans l'effectif",
+   "Compétence requise 'etiquetage_final' non disponible dans l'effectif",
+   "Compétence requise 'surjet_4_fils' non disponible dans l'effectif",
+   "Compétence requise 'cartonnage' non disponible dans l'effectif",
+   "Compétence requise 'pose_passant' non disponible dans l'effectif",
+   "Compétence requise 'formage_vapeur' non disponible dans l'effectif",
+   "Compétence requise 'pliage_specifique' non disponible dans l'effectif",
+   "Compétence requise 'piqueuse_2_aiguilles' non disponible dans l'effectif",
+   "Compétence requise 'controle_mesures' non disponible dans l'effectif",
+   "Compétence requise 'piqueuse_bouton' non disponible dans l'effectif",
+   "Compétence requise 'marquage_pieces' non disponible dans l'effectif",
+   "Compétence requise 'couture_droite' non disponible dans l'effectif",
+   "Compétence requise 'lecture_plan' non disponible dans l'effectif",
+   "Compétence requise 'controle_visuel' non disponible dans l'effectif",
+   "Compétence requise 'mise_sous_poche' non disponible dans l'effectif",
+   "Compétence requise 'controle_normes' non disponible dans l'effectif"
+  ]
+ }
+}

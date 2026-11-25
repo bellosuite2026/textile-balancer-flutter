@@ -1,0 +1,347 @@
+[
+ {
+  "id": "OP010",
+  "name": "Étude gamme & lecture plan",
+  "duration": 0.25,
+  "predecessors": [],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "lecture_plan"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP020",
+  "name": "Préparation pièces (tri, marquage, thermocollage poches)",
+  "duration": 0.5,
+  "predecessors": [
+   "OP010"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "tri_pieces",
+   "marquage_pieces",
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP030",
+  "name": "Montage poches arrière (passepoil + piqûre)",
+  "duration": 0.85,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "pose_poche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP040",
+  "name": "Montage poches devant (italienne ou passepoil)",
+  "duration": 0.95,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "pose_poche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP050",
+  "name": "Montage fourche (devant)",
+  "duration": 0.6,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP060",
+  "name": "Montage fourche (dos)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP070",
+  "name": "Assemblage fourche (devant + dos)",
+  "duration": 0.45,
+  "predecessors": [
+   "OP050",
+   "OP060"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP080",
+  "name": "Montage côtés (devant/dos)",
+  "duration": 0.7,
+  "predecessors": [
+   "OP070"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP090",
+  "name": "Montage ceinture (préparation + thermocollage)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP100",
+  "name": "Pose ceinture sur corps",
+  "duration": 0.8,
+  "predecessors": [
+   "OP080",
+   "OP090"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "pose_ceinture"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP110",
+  "name": "Surjet côtés + fourche",
+  "duration": 0.45,
+  "predecessors": [
+   "OP100"
+  ],
+  "machine_type": "surjeteuse_5_fils",
+  "required_skills": [
+   "surjet_5_fils"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP120",
+  "name": "Préparation bas de jambes (ourlet ou revers)",
+  "duration": 0.4,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "marquage_pieces"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP130",
+  "name": "Ourlet bas jambes (double)",
+  "duration": 0.5,
+  "predecessors": [
+   "OP120"
+  ],
+  "machine_type": "piqueuse_2_aiguilles",
+  "required_skills": [
+   "piqueuse_2_aiguilles",
+   "ourlet"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP140",
+  "name": "Pose zip / braguette (fermeture)",
+  "duration": 1.1,
+  "predecessors": [
+   "OP080"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "pose_zip"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP150",
+  "name": "Piqure braguette (renfort + piqûre apparente)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP140"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "piqure_apparente"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP160",
+  "name": "Passants ceinture (découpe + pose)",
+  "duration": 0.65,
+  "predecessors": [
+   "OP100"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "pose_passant"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP170",
+  "name": "Pose passants sur ceinture",
+  "duration": 0.35,
+  "predecessors": [
+   "OP160"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP180",
+  "name": "Coupe fils & nettoyage",
+  "duration": 0.2,
+  "predecessors": [
+   "OP130",
+   "OP150",
+   "OP170"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP190",
+  "name": "Contrôle visuel & mesures",
+  "duration": 0.35,
+  "predecessors": [
+   "OP180"
+  ],
+  "machine_type": "table_controle",
+  "required_skills": [
+   "controle_visuel",
+   "controle_mesures"
+  ],
+  "section": "Qualite",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP200",
+  "name": "Repassage final (jambe + ceinture)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP190"
+  ],
+  "machine_type": "presse_vapeur",
+  "required_skills": [
+   "presse_vapeur"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP210",
+  "name": "Pliage & mise sous pochette",
+  "duration": 0.25,
+  "predecessors": [
+   "OP200"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "pliage",
+   "mise_sous_poche"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP220",
+  "name": "Étiquetage & cartonnage",
+  "duration": 0.2,
+  "predecessors": [
+   "OP210"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "etiquetage_final",
+   "cartonnage"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ }
+]

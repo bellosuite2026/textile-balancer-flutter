@@ -1,0 +1,495 @@
+[
+ {
+  "id": "OP010",
+  "name": "Étude gamme & lecture plan",
+  "duration": 0.35,
+  "predecessors": [],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "lecture_plan"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP020",
+  "name": "Préparation pièces (tri, marquage, thermocollage renforts)",
+  "duration": 0.6,
+  "predecessors": [
+   "OP010"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "tri_pieces",
+   "marquage_pieces",
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP030",
+  "name": "Montage poches poitrine (passepoil)",
+  "duration": 1.1,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "pose_poche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP040",
+  "name": "Montage poches basses (à rabat ou passepoil)",
+  "duration": 1.3,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "pose_poche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP050",
+  "name": "Montage poches intérieures",
+  "duration": 0.75,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP060",
+  "name": "Montage épaule (devant/dos)",
+  "duration": 0.65,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP070",
+  "name": "Montage côtés (devant/dos)",
+  "duration": 0.75,
+  "predecessors": [
+   "OP060"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP080",
+  "name": "Préparation manches (surjet bas + thermocollage tête)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "surjeteuse_4_fils",
+  "required_skills": [
+   "surjet_4_fils",
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP090",
+  "name": "Montage manches (emboitage tête de manche)",
+  "duration": 1.4,
+  "predecessors": [
+   "OP070",
+   "OP080"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "montage_manche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP100",
+  "name": "Surjet côtés + emmanchures",
+  "duration": 0.6,
+  "predecessors": [
+   "OP090"
+  ],
+  "machine_type": "surjeteuse_5_fils",
+  "required_skills": [
+   "surjet_5_fils"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP110",
+  "name": "Préparation col (thermocollage, pliage, piqûre)",
+  "duration": 1.0,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "thermocollage",
+   "piqure_apparente"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP120",
+  "name": "Pose col (pied de col + col) - opération critique",
+  "duration": 1.5,
+  "predecessors": [
+   "OP100",
+   "OP110"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "pose_col"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP130",
+  "name": "Piqure col (piqûre apparente double)",
+  "duration": 0.8,
+  "predecessors": [
+   "OP120"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "piqure_apparente"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP140",
+  "name": "Préparation revers/collet (si veste)",
+  "duration": 0.7,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP150",
+  "name": "Montage revers/collet",
+  "duration": 0.95,
+  "predecessors": [
+   "OP120",
+   "OP140"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP160",
+  "name": "Préparation poignets (thermocollage, surjet)",
+  "duration": 0.45,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "surjeteuse_3_fils",
+  "required_skills": [
+   "surjet_3_fils",
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP170",
+  "name": "Pose poignets (manchette + poignet)",
+  "duration": 1.1,
+  "predecessors": [
+   "OP090",
+   "OP160"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "pose_poignet"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP180",
+  "name": "Piqure poignets",
+  "duration": 0.5,
+  "predecessors": [
+   "OP170"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "piqure_apparente"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP190",
+  "name": "Montage doublure (corps + manches) - assemblage",
+  "duration": 1.8,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP200",
+  "name": "Pose doublure dans veste (retourné + piqûre)",
+  "duration": 1.6,
+  "predecessors": [
+   "OP190",
+   "OP130",
+   "OP150",
+   "OP180"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP210",
+  "name": "Boutonnières (corps + manches)",
+  "duration": 0.85,
+  "predecessors": [
+   "OP120",
+   "OP180"
+  ],
+  "machine_type": "piqueuse_boutonniere",
+  "required_skills": [
+   "piqueuse_boutonniere"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP220",
+  "name": "Pose boutons (corps + manches)",
+  "duration": 0.55,
+  "predecessors": [
+   "OP210"
+  ],
+  "machine_type": "piqueuse_bouton",
+  "required_skills": [
+   "piqueuse_bouton"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP230",
+  "name": "Passants & oeillets (manches, dos)",
+  "duration": 0.4,
+  "predecessors": [
+   "OP090"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "pose_passant"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP240",
+  "name": "Ourlet bas veste (doublure + tissu)",
+  "duration": 0.7,
+  "predecessors": [
+   "OP200"
+  ],
+  "machine_type": "piqueuse_2_aiguilles",
+  "required_skills": [
+   "piqueuse_2_aiguilles",
+   "ourlet"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP250",
+  "name": "Ourlet bas manches (doublure)",
+  "duration": 0.45,
+  "predecessors": [
+   "OP200"
+  ],
+  "machine_type": "piqueuse_2_aiguilles",
+  "required_skills": [
+   "piqueuse_2_aiguilles",
+   "ourlet"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP260",
+  "name": "Coupe fils, nettoyage, contrôle interne",
+  "duration": 0.35,
+  "predecessors": [
+   "OP220",
+   "OP240",
+   "OP250",
+   "OP230"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP270",
+  "name": "Contrôle final visuel & mesures",
+  "duration": 0.5,
+  "predecessors": [
+   "OP260"
+  ],
+  "machine_type": "table_controle",
+  "required_skills": [
+   "controle_visuel",
+   "controle_mesures",
+   "controle_normes"
+  ],
+  "section": "Qualite",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP280",
+  "name": "Repassage complet (corps, manches, col)",
+  "duration": 0.85,
+  "predecessors": [
+   "OP270"
+  ],
+  "machine_type": "presse_vapeur",
+  "required_skills": [
+   "presse_vapeur",
+   "formage_vapeur"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP290",
+  "name": "Pliage veste (méthode spécifique)",
+  "duration": 0.4,
+  "predecessors": [
+   "OP280"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "pliage_specifique"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP300",
+  "name": "Mise sous housse & étiquetage final",
+  "duration": 0.3,
+  "predecessors": [
+   "OP290"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "mise_sous_poche",
+   "etiquetage_final"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP310",
+  "name": "Cartonnage & palettisation",
+  "duration": 0.2,
+  "predecessors": [
+   "OP300"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "cartonnage"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ }
+]

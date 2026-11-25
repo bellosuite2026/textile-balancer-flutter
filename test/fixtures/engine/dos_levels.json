@@ -1,0 +1,520 @@
+{
+ "name": "dos_levels",
+ "description": "Dos de pantalon, matrice de polyvalence (skill_levels)",
+ "solver": "rpw",
+ "kind": "balance",
+ "problem": {
+  "name": "dos pantalon",
+  "target_cycle_time": 5.0,
+  "operations": [
+   {
+    "id": "OP010",
+    "name": "Thermofixer ceintures / renforts dos",
+    "duration": 2.1,
+    "predecessors": [],
+    "machine_type": "Thermo-presse",
+    "required_skills": [
+     "oper_tissu"
+    ],
+    "section": "Finissage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP020",
+    "name": "Marquer pinces dos",
+    "duration": 1.8,
+    "predecessors": [
+     "OP010"
+    ],
+    "machine_type": "Marqueur auto",
+    "required_skills": [
+     "oper_precis"
+    ],
+    "section": "Traçage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP030",
+    "name": "Piquer pinces dos",
+    "duration": 3.5,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "Piqueuse plate",
+    "required_skills": [
+     "piquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP040",
+    "name": "Assemblage milieu dos (fourche)",
+    "duration": 4.2,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "Surjeteuse 4-fils",
+    "required_skills": [
+     "surjeter"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP050",
+    "name": "Surpiquer milieu dos",
+    "duration": 2.7,
+    "predecessors": [
+     "OP040"
+    ],
+    "machine_type": "Piqueuse double aiguille",
+    "required_skills": [
+     "piquer_surpiquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP060",
+    "name": "Poser et plaquer poches dos",
+    "duration": 3.1,
+    "predecessors": [
+     "OP050"
+    ],
+    "machine_type": "Piqueuse plate",
+    "required_skills": [
+     "piquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP070",
+    "name": "Fixer passants ceintures dos",
+    "duration": 0.9,
+    "predecessors": [
+     "OP060"
+    ],
+    "machine_type": "Machine à passants",
+    "required_skills": [
+     "machine_passant"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   }
+  ],
+  "workstations": [
+   {
+    "id": "WS01",
+    "name": "WS01",
+    "machine_type": "Thermo-presse",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finissage"
+   },
+   {
+    "id": "WS02",
+    "name": "WS02",
+    "machine_type": "Marqueur auto",
+    "available": true,
+    "max_workers": 1,
+    "section": "Traçage"
+   },
+   {
+    "id": "WS03",
+    "name": "WS03",
+    "machine_type": "Piqueuse plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS04",
+    "name": "WS04",
+    "machine_type": "Surjeteuse 4-fils",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS05",
+    "name": "WS05",
+    "machine_type": "Piqueuse double aiguille",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS06",
+    "name": "WS06",
+    "machine_type": "Piqueuse plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS07",
+    "name": "WS07",
+    "machine_type": "Machine à passants",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   }
+  ],
+  "workers": [
+   {
+    "id": "L0",
+    "name": "Poly 0",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 1.2,
+     "surjeter": 0.8
+    }
+   },
+   {
+    "id": "L1",
+    "name": "Poly 1",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 1.0999999999999999,
+     "surjeter": 0.8500000000000001
+    }
+   },
+   {
+    "id": "L2",
+    "name": "Poly 2",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 1.0,
+     "surjeter": 0.9
+    }
+   },
+   {
+    "id": "L3",
+    "name": "Poly 3",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 0.8999999999999999,
+     "surjeter": 0.9500000000000001
+    }
+   },
+   {
+    "id": "L4",
+    "name": "Poly 4",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 0.7999999999999999,
+     "surjeter": 1.0
+    }
+   },
+   {
+    "id": "L5",
+    "name": "Poly 5",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 0.7,
+     "surjeter": 1.05
+    }
+   },
+   {
+    "id": "L6",
+    "name": "Poly 6",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 0.5999999999999999,
+     "surjeter": 1.1
+    }
+   },
+   {
+    "id": "L7",
+    "name": "Poly 7",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {
+     "piquer": 0.4999999999999999,
+     "surjeter": 1.1500000000000001
+    }
+   }
+  ],
+  "max_stations": null,
+  "forced_assignments": {},
+  "forbidden_assignments": {},
+  "same_station_groups": [],
+  "max_machines_per_station": 3,
+  "machine_change_time": 0.0,
+  "section_policy": "prefer",
+  "split_mode": "share"
+ },
+ "expected": {
+  "success": true,
+  "compliant": true,
+  "status": "FEASIBLE",
+  "solver": "RPW",
+  "solve_time_seconds": 0.0,
+  "target_cycle_time": 5.0,
+  "stations_used": 5,
+  "actual_cycle_time": 4.2,
+  "efficiency": 73.2,
+  "balance_delay": 26.8,
+  "smoothness_index": 1.69,
+  "operators": 5,
+  "station_details": [
+   {
+    "station": 1,
+    "total_time": 3.9,
+    "load_pct": 78.0,
+    "operations": [
+     "OP010",
+     "OP020"
+    ],
+    "workers": [
+     "Poly 3"
+    ],
+    "workstation": "WS01",
+    "parallel": 1,
+    "machine_types": [
+     "Thermo-presse",
+     "Marqueur auto"
+    ],
+    "sections": [
+     "Finissage",
+     "Traçage"
+    ],
+    "workstations": [
+     "WS01",
+     "WS02"
+    ],
+    "worker_ids": [
+     "L3"
+    ],
+    "worker_time": 3.9,
+    "worker_efficiency": 1.0
+   },
+   {
+    "station": 2,
+    "total_time": 3.5,
+    "load_pct": 70.0,
+    "operations": [
+     "OP030"
+    ],
+    "workers": [
+     "Poly 0"
+    ],
+    "workstation": "WS03",
+    "parallel": 1,
+    "machine_types": [
+     "Piqueuse plate"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS03"
+    ],
+    "worker_ids": [
+     "L0"
+    ],
+    "worker_time": 2.917,
+    "worker_efficiency": 1.2
+   },
+   {
+    "station": 3,
+    "total_time": 4.2,
+    "load_pct": 84.0,
+    "operations": [
+     "OP040"
+    ],
+    "workers": [
+     "Poly 7"
+    ],
+    "workstation": "WS04",
+    "parallel": 1,
+    "machine_types": [
+     "Surjeteuse 4-fils"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS04"
+    ],
+    "worker_ids": [
+     "L7"
+    ],
+    "worker_time": 3.652,
+    "worker_efficiency": 1.15
+   },
+   {
+    "station": 4,
+    "total_time": 2.7,
+    "load_pct": 54.0,
+    "operations": [
+     "OP050"
+    ],
+    "workers": [
+     "Poly 2"
+    ],
+    "workstation": "WS05",
+    "parallel": 1,
+    "machine_types": [
+     "Piqueuse double aiguille"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS05"
+    ],
+    "worker_ids": [
+     "L2"
+    ],
+    "worker_time": 2.7,
+    "worker_efficiency": 1.0
+   },
+   {
+    "station": 5,
+    "total_time": 4.0,
+    "load_pct": 80.0,
+    "operations": [
+     "OP060",
+     "OP070"
+    ],
+    "workers": [
+     "Poly 1"
+    ],
+    "workstation": "WS06",
+    "parallel": 1,
+    "machine_types": [
+     "Piqueuse plate",
+     "Machine à passants"
+    ],
+    "sections": [
+     "Couture",
+     "Montage"
+    ],
+    "workstations": [
+     "WS06",
+     "WS07"
+    ],
+    "worker_ids": [
+     "L1"
+    ],
+    "worker_time": 3.718,
+    "worker_efficiency": 1.076
+   }
+  ],
+  "operation_assignments": {
+   "OP010": 1,
+   "OP020": 1,
+   "OP030": 2,
+   "OP040": 3,
+   "OP050": 4,
+   "OP060": 5,
+   "OP070": 5
+  },
+  "worker_assignments": {
+   "L3": "WS1",
+   "L0": "WS2",
+   "L7": "WS3",
+   "L2": "WS4",
+   "L1": "WS5"
+  },
+  "warnings": [
+   "Solution RPW (heuristique) - non garantie optimale"
+  ],
+  "error_message": "",
+  "violations": []
+ },
+ "precheck": {
+  "feasible": true,
+  "issues": [],
+  "validation_errors": []
+ }
+}

@@ -1,0 +1,670 @@
+{
+ "name": "dos_c30_share",
+ "description": "Dos de pantalon, cadence 3,0 : partage d'opérations longues",
+ "solver": "rpw",
+ "kind": "balance",
+ "problem": {
+  "name": "dos pantalon",
+  "target_cycle_time": 3.0,
+  "operations": [
+   {
+    "id": "OP010",
+    "name": "Thermofixer ceintures / renforts dos",
+    "duration": 2.1,
+    "predecessors": [],
+    "machine_type": "Thermo-presse",
+    "required_skills": [
+     "oper_tissu"
+    ],
+    "section": "Finissage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP020",
+    "name": "Marquer pinces dos",
+    "duration": 1.8,
+    "predecessors": [
+     "OP010"
+    ],
+    "machine_type": "Marqueur auto",
+    "required_skills": [
+     "oper_precis"
+    ],
+    "section": "Traçage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP030",
+    "name": "Piquer pinces dos",
+    "duration": 3.5,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "Piqueuse plate",
+    "required_skills": [
+     "piquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP040",
+    "name": "Assemblage milieu dos (fourche)",
+    "duration": 4.2,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "Surjeteuse 4-fils",
+    "required_skills": [
+     "surjeter"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP050",
+    "name": "Surpiquer milieu dos",
+    "duration": 2.7,
+    "predecessors": [
+     "OP040"
+    ],
+    "machine_type": "Piqueuse double aiguille",
+    "required_skills": [
+     "piquer_surpiquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP060",
+    "name": "Poser et plaquer poches dos",
+    "duration": 3.1,
+    "predecessors": [
+     "OP050"
+    ],
+    "machine_type": "Piqueuse plate",
+    "required_skills": [
+     "piquer"
+    ],
+    "section": "Couture",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP070",
+    "name": "Fixer passants ceintures dos",
+    "duration": 0.9,
+    "predecessors": [
+     "OP060"
+    ],
+    "machine_type": "Machine à passants",
+    "required_skills": [
+     "machine_passant"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   }
+  ],
+  "workstations": [
+   {
+    "id": "WS01",
+    "name": "WS01",
+    "machine_type": "Thermo-presse",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finissage"
+   },
+   {
+    "id": "WS02",
+    "name": "WS02",
+    "machine_type": "Marqueur auto",
+    "available": true,
+    "max_workers": 1,
+    "section": "Traçage"
+   },
+   {
+    "id": "WS03",
+    "name": "WS03",
+    "machine_type": "Piqueuse plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS04",
+    "name": "WS04",
+    "machine_type": "Surjeteuse 4-fils",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS05",
+    "name": "WS05",
+    "machine_type": "Piqueuse double aiguille",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS06",
+    "name": "WS06",
+    "machine_type": "Piqueuse plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Couture"
+   },
+   {
+    "id": "WS07",
+    "name": "WS07",
+    "machine_type": "Machine à passants",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   }
+  ],
+  "workers": [
+   {
+    "id": "P0",
+    "name": "Poly 0",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "P1",
+    "name": "Poly 1",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 0.9,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "P2",
+    "name": "Poly 2",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.15,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "P3",
+    "name": "Poly 3",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 0.95,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "P4",
+    "name": "Poly 4",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.05,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "P5",
+    "name": "Poly 5",
+    "skills": [
+     "machine_passant",
+     "oper_precis",
+     "oper_tissu",
+     "piquer",
+     "piquer_surpiquer",
+     "surjeter"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   }
+  ],
+  "max_stations": null,
+  "forced_assignments": {},
+  "forbidden_assignments": {},
+  "same_station_groups": [],
+  "max_machines_per_station": 3,
+  "machine_change_time": 0.0,
+  "section_policy": "prefer",
+  "split_mode": "share"
+ },
+ "expected": {
+  "success": false,
+  "compliant": false,
+  "status": "INFEASIBLE_CONSTRAINTS",
+  "solver": "RPW",
+  "solve_time_seconds": 0.0,
+  "target_cycle_time": 3.0,
+  "stations_used": 10,
+  "actual_cycle_time": 3.0,
+  "efficiency": 61.0,
+  "balance_delay": 39.0,
+  "smoothness_index": 4.96,
+  "operators": 10,
+  "station_details": [
+   {
+    "station": 1,
+    "total_time": 2.1,
+    "load_pct": 70.0,
+    "operations": [
+     "OP010"
+    ],
+    "workers": [
+     "Poly 2"
+    ],
+    "workstation": "WS01",
+    "parallel": 1,
+    "machine_types": [
+     "Thermo-presse"
+    ],
+    "sections": [
+     "Finissage"
+    ],
+    "workstations": [
+     "WS01"
+    ],
+    "worker_ids": [
+     "P2"
+    ],
+    "worker_time": 1.826,
+    "worker_efficiency": 1.15
+   },
+   {
+    "station": 2,
+    "total_time": 1.8,
+    "load_pct": 60.0,
+    "operations": [
+     "OP020"
+    ],
+    "workers": [
+     "Poly 4"
+    ],
+    "workstation": "WS02",
+    "parallel": 1,
+    "machine_types": [
+     "Marqueur auto"
+    ],
+    "sections": [
+     "Traçage"
+    ],
+    "workstations": [
+     "WS02"
+    ],
+    "worker_ids": [
+     "P4"
+    ],
+    "worker_time": 1.714,
+    "worker_efficiency": 1.05
+   },
+   {
+    "station": 3,
+    "total_time": 3.0,
+    "load_pct": 100.0,
+    "operations": [
+     "OP030"
+    ],
+    "workers": [],
+    "workstation": "WS03",
+    "parallel": 1,
+    "shares": {
+     "OP030": 3.0
+    },
+    "machine_types": [
+     "Piqueuse plate"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS03"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 4,
+    "total_time": 0.5,
+    "load_pct": 16.7,
+    "operations": [
+     "OP030"
+    ],
+    "workers": [
+     "Poly 3"
+    ],
+    "workstation": "WS06",
+    "parallel": 1,
+    "shares": {
+     "OP030": 0.5
+    },
+    "machine_types": [
+     "Piqueuse plate"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS06"
+    ],
+    "worker_ids": [
+     "P3"
+    ],
+    "worker_time": 0.526,
+    "worker_efficiency": 0.951
+   },
+   {
+    "station": 5,
+    "total_time": 3.0,
+    "load_pct": 100.0,
+    "operations": [
+     "OP040"
+    ],
+    "workers": [],
+    "workstation": "WS04",
+    "parallel": 1,
+    "shares": {
+     "OP040": 3.0
+    },
+    "machine_types": [
+     "Surjeteuse 4-fils"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS04"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 6,
+    "total_time": 1.2,
+    "load_pct": 40.0,
+    "operations": [
+     "OP040"
+    ],
+    "workers": [
+     "Poly 5"
+    ],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP040": 1.2
+    },
+    "machine_types": [
+     "Surjeteuse 4-fils"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "worker_ids": [
+     "P5"
+    ],
+    "worker_time": 1.2,
+    "worker_efficiency": 1.0
+   },
+   {
+    "station": 7,
+    "total_time": 2.7,
+    "load_pct": 90.0,
+    "operations": [
+     "OP050"
+    ],
+    "workers": [],
+    "workstation": "WS05",
+    "parallel": 1,
+    "machine_types": [
+     "Piqueuse double aiguille"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "workstations": [
+     "WS05"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 8,
+    "total_time": 3.0,
+    "load_pct": 100.0,
+    "operations": [
+     "OP060"
+    ],
+    "workers": [],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP060": 3.0
+    },
+    "machine_types": [
+     "Piqueuse plate"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 9,
+    "total_time": 0.1,
+    "load_pct": 3.3,
+    "operations": [
+     "OP060"
+    ],
+    "workers": [
+     "Poly 1"
+    ],
+    "workstation": "",
+    "parallel": 1,
+    "shares": {
+     "OP060": 0.1
+    },
+    "machine_types": [
+     "Piqueuse plate"
+    ],
+    "sections": [
+     "Couture"
+    ],
+    "worker_ids": [
+     "P1"
+    ],
+    "worker_time": 0.111,
+    "worker_efficiency": 0.901
+   },
+   {
+    "station": 10,
+    "total_time": 0.9,
+    "load_pct": 30.0,
+    "operations": [
+     "OP070"
+    ],
+    "workers": [
+     "Poly 0"
+    ],
+    "workstation": "WS07",
+    "parallel": 1,
+    "machine_types": [
+     "Machine à passants"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS07"
+    ],
+    "worker_ids": [
+     "P0"
+    ],
+    "worker_time": 0.9,
+    "worker_efficiency": 1.0
+   }
+  ],
+  "operation_assignments": {
+   "OP010": 1,
+   "OP020": 2,
+   "OP030": 3,
+   "OP040": 5,
+   "OP050": 7,
+   "OP060": 8,
+   "OP070": 10
+  },
+  "worker_assignments": {
+   "P2": "WS1",
+   "P4": "WS2",
+   "P3": "WS4",
+   "P5": "WS6",
+   "P1": "WS9",
+   "P0": "WS10"
+  },
+  "warnings": [
+   "Solution RPW (heuristique) - non garantie optimale",
+   "[OP_GT_CYCLE] OP030 (3.50 min) dépasse le cycle 3.00 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "[OP_GT_CYCLE] OP040 (4.20 min) dépasse le cycle 3.00 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "[OP_GT_CYCLE] OP060 (3.10 min) dépasse le cycle 3.00 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "⚠️ Station 6 : aucun poste disponible pour la/les machine(s) Surjeteuse 4-fils",
+   "⚠️ Station 8 : aucun poste disponible pour la/les machine(s) Piqueuse plate",
+   "⚠️ Station 9 : aucun poste disponible pour la/les machine(s) Piqueuse plate",
+   "⚠️ Station 3 : aucun ouvrier disponible ne maîtrise TOUTES les compétences requises (piquer)",
+   "⚠️ Station 5 : aucun ouvrier disponible ne maîtrise TOUTES les compétences requises (surjeter)",
+   "⚠️ Station 7 : aucun ouvrier disponible ne maîtrise TOUTES les compétences requises (piquer_surpiquer)",
+   "⚠️ Station 8 : aucun ouvrier disponible ne maîtrise TOUTES les compétences requises (piquer)",
+   "ℹ️ OP030 est partagée entre les stations 3, 4 (3.00 + 0.50 min)",
+   "ℹ️ OP040 est partagée entre les stations 5, 6 (3.00 + 1.20 min)",
+   "ℹ️ OP060 est partagée entre les stations 8, 9 (3.00 + 0.10 min)"
+  ],
+  "error_message": "Solution non conforme : [NO_WORKSTATION] Station 6 : aucun poste physique compatible disponible. | [NO_WORKSTATION] Station 8 : aucun poste physique compatible disponible. | [NO_WORKSTATION] Station 9 : aucun poste physique compatible disponible. | [NO_WORKER] Station 3 : ouvrier(s) qualifié(s) manquant(s). | [NO_WORKER] Station 5 : ouvrier(s) qualifié(s) manquant(s). | [NO_WORKER] Station 7 : ouvrier(s) qualifié(s) manquant(s). | [NO_WORKER] Station 8 : ouvrier(s) qualifié(s) manquant(s). | [MACHINE_CAPACITY] 6.60 min sur « Piqueuse plate » demandent ≥ 3 poste(s) au cycle 3.00 ; 2 disponible(s). → Ajouter 1 poste(s) Piqueuse plate ou allonger le cycle à ≥ 3.30 min. | [MACHINE_CAPACITY] 4.20 min sur « Surjeteuse 4-fils » demandent ≥ 2 poste(s) au cycle 3.00 ; 1 disponible(s). → Ajouter 1 poste(s) Surjeteuse 4-fils ou allonger le cycle à ≥ 4.20 min. | [WORKERS_SHORT] 18.30 min de travail exigent ≥ 7 opérateurs au cycle 3.00 ; 6 disponibles. → Allonger le cycle à ≥ 3.05 min ou renforcer l'effectif.",
+  "violations": [
+   {
+    "code": "NO_WORKSTATION",
+    "severity": "error",
+    "message": "Station 6 : aucun poste physique compatible disponible.",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKSTATION",
+    "severity": "error",
+    "message": "Station 8 : aucun poste physique compatible disponible.",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKSTATION",
+    "severity": "error",
+    "message": "Station 9 : aucun poste physique compatible disponible.",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKER",
+    "severity": "error",
+    "message": "Station 3 : ouvrier(s) qualifié(s) manquant(s).",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKER",
+    "severity": "error",
+    "message": "Station 5 : ouvrier(s) qualifié(s) manquant(s).",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKER",
+    "severity": "error",
+    "message": "Station 7 : ouvrier(s) qualifié(s) manquant(s).",
+    "suggestion": ""
+   },
+   {
+    "code": "NO_WORKER",
+    "severity": "error",
+    "message": "Station 8 : ouvrier(s) qualifié(s) manquant(s).",
+    "suggestion": ""
+   }
+  ]
+ },
+ "precheck": {
+  "feasible": false,
+  "issues": [
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP030 (3.50 min) dépasse le cycle 3.00 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   },
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP040 (4.20 min) dépasse le cycle 3.00 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   },
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP060 (3.10 min) dépasse le cycle 3.00 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   },
+   {
+    "code": "MACHINE_CAPACITY",
+    "severity": "error",
+    "message": "6.60 min sur « Piqueuse plate » demandent ≥ 3 poste(s) au cycle 3.00 ; 2 disponible(s).",
+    "suggestion": "Ajouter 1 poste(s) Piqueuse plate ou allonger le cycle à ≥ 3.30 min."
+   },
+   {
+    "code": "MACHINE_CAPACITY",
+    "severity": "error",
+    "message": "4.20 min sur « Surjeteuse 4-fils » demandent ≥ 2 poste(s) au cycle 3.00 ; 1 disponible(s).",
+    "suggestion": "Ajouter 1 poste(s) Surjeteuse 4-fils ou allonger le cycle à ≥ 4.20 min."
+   },
+   {
+    "code": "WORKERS_SHORT",
+    "severity": "error",
+    "message": "18.30 min de travail exigent ≥ 7 opérateurs au cycle 3.00 ; 6 disponibles.",
+    "suggestion": "Allonger le cycle à ≥ 3.05 min ou renforcer l'effectif."
+   }
+  ],
+  "validation_errors": []
+ }
+}

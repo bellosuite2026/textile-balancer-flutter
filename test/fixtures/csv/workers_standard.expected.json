@@ -1,0 +1,143 @@
+[
+ {
+  "id": "W001",
+  "name": "Marie D.",
+  "skills": [
+   "lecture_plan",
+   "tri_pieces",
+   "marquage_pieces",
+   "thermocollage",
+   "couture_droite",
+   "couture_courbe"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W002",
+  "name": "Ahmed B.",
+  "skills": [
+   "couture_droite",
+   "surjet_4_fils",
+   "surjet_5_fils",
+   "montage_manche"
+  ],
+  "efficiency": 1.05,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W003",
+  "name": "Sophie L.",
+  "skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "pose_col",
+   "pose_poignet",
+   "pose_poche"
+  ],
+  "efficiency": 0.95,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W004",
+  "name": "Karim M.",
+  "skills": [
+   "couture_droite",
+   "surjet_4_fils",
+   "surjet_5_fils",
+   "thermocollage"
+  ],
+  "efficiency": 1.1,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W005",
+  "name": "Fatou S.",
+  "skills": [
+   "piqueuse_2_aiguilles",
+   "ourlet",
+   "piqueuse_boutonniere",
+   "piqueuse_bouton"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W006",
+  "name": "Youssef A.",
+  "skills": [
+   "presse_vapeur",
+   "formage_vapeur",
+   "couture_droite"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W007",
+  "name": "Leila K.",
+  "skills": [
+   "controle_visuel",
+   "controle_mesures",
+   "controle_normes",
+   "lecture_plan"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W008",
+  "name": "Omar T.",
+  "skills": [
+   "pliage_specifique",
+   "mise_sous_poche",
+   "etiquetage_final",
+   "cartonnage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W009",
+  "name": "Aicha R.",
+  "skills": [
+   "couture_droite",
+   "couture_courbe",
+   "surjet_3_fils",
+   "pose_passant"
+  ],
+  "efficiency": 0.98,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W010",
+  "name": "Mehdi L.",
+  "skills": [
+   "couture_droite",
+   "montage_manche",
+   "pose_poche"
+  ],
+  "efficiency": 1.02,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ }
+]

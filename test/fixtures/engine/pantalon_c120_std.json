@@ -1,0 +1,786 @@
+{
+ "name": "pantalon_c120_std",
+ "description": "Pantalon (sam_pantalon) + postes/ouvriers standard, cadence 1,2",
+ "solver": "rpw",
+ "kind": "balance",
+ "problem": {
+  "name": "Pantalon",
+  "target_cycle_time": 1.2,
+  "operations": [
+   {
+    "id": "OP010",
+    "name": "Préparation & lecture plan",
+    "duration": 0.4,
+    "predecessors": [],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "lecture_plan"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP020",
+    "name": "Tri & marquage pièces (devants, dos, poches, ceinture, passants)",
+    "duration": 0.55,
+    "predecessors": [
+     "OP010"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "tri_pieces",
+     "marquage_pieces"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP030",
+    "name": "Thermocollage pièces (ceinture, poches, bas jambes)",
+    "duration": 0.65,
+    "predecessors": [
+     "OP020"
+    ],
+    "machine_type": "presse_vapeur",
+    "required_skills": [
+     "thermocollage"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP040",
+    "name": "Montage poches italiennes (devants)",
+    "duration": 1.4,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_courbe",
+     "pose_poche"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP050",
+    "name": "Montage poches plaquées (dos)",
+    "duration": 0.95,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "pose_poche"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP060",
+    "name": "Préparation & montage braguette (zip + patte)",
+    "duration": 1.2,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "couture_courbe"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP070",
+    "name": "Montage passants ceinture",
+    "duration": 0.5,
+    "predecessors": [
+     "OP030"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "pose_passant"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP080",
+    "name": "Fermeture côtés (devant + dos)",
+    "duration": 0.75,
+    "predecessors": [
+     "OP040",
+     "OP050"
+    ],
+    "machine_type": "surjeteuse_5_fils",
+    "required_skills": [
+     "surjet_5_fils"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP090",
+    "name": "Fermeture entrejambe (couture intérieure)",
+    "duration": 0.85,
+    "predecessors": [
+     "OP060",
+     "OP080"
+    ],
+    "machine_type": "surjeteuse_4_fils",
+    "required_skills": [
+     "surjet_4_fils"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP100",
+    "name": "Montage ceinture (double, surpiqure)",
+    "duration": 1.1,
+    "predecessors": [
+     "OP070",
+     "OP080"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP110",
+    "name": "Pose passants sur ceinture",
+    "duration": 0.4,
+    "predecessors": [
+     "OP100"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "couture_droite",
+     "pose_passant"
+    ],
+    "section": "Montage",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP120",
+    "name": "Surpiqure ceinture (apparente)",
+    "duration": 0.55,
+    "predecessors": [
+     "OP110"
+    ],
+    "machine_type": "piqueuse_plate",
+    "required_skills": [
+     "piqure_apparente"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP130",
+    "name": "Ourlet bas jambes (double, invisible)",
+    "duration": 0.7,
+    "predecessors": [
+     "OP090"
+    ],
+    "machine_type": "piqueuse_2_aiguilles",
+    "required_skills": [
+     "ourlet"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP140",
+    "name": "Contrôle visuel & mesures",
+    "duration": 0.35,
+    "predecessors": [
+     "OP120",
+     "OP130"
+    ],
+    "machine_type": "table_controle",
+    "required_skills": [
+     "controle_visuel",
+     "controle_mesures"
+    ],
+    "section": "Qualite",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP150",
+    "name": "Repassage final (jambes, ceinture)",
+    "duration": 0.6,
+    "predecessors": [
+     "OP140"
+    ],
+    "machine_type": "presse_vapeur",
+    "required_skills": [
+     "repassage",
+     "formage_vapeur"
+    ],
+    "section": "Finition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP160",
+    "name": "Pliage pantalon + mise sous pochette",
+    "duration": 0.3,
+    "predecessors": [
+     "OP150"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "pliage_specifique",
+     "mise_sous_poche"
+    ],
+    "section": "Expedition",
+    "optional": false,
+    "task_type": "VA"
+   },
+   {
+    "id": "OP170",
+    "name": "Étiquetage + cartonnage",
+    "duration": 0.25,
+    "predecessors": [
+     "OP160"
+    ],
+    "machine_type": "table_travail",
+    "required_skills": [
+     "etiquetage_final",
+     "cartonnage"
+    ],
+    "section": "Expedition",
+    "optional": false,
+    "task_type": "VA"
+   }
+  ],
+  "workstations": [
+   {
+    "id": "WS01",
+    "name": "Poste préparation & lecture plan",
+    "machine_type": "table_travail",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS02",
+    "name": "Piqueuse plate 1 (assemblage)",
+    "machine_type": "piqueuse_plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS03",
+    "name": "Piqueuse plate 2 (assemblage)",
+    "machine_type": "piqueuse_plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS04",
+    "name": "Piqueuse plate 3 (finitions)",
+    "machine_type": "piqueuse_plate",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finition"
+   },
+   {
+    "id": "WS05",
+    "name": "Surjeteuse 5 fils (côtés, manches)",
+    "machine_type": "surjeteuse_5_fils",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS06",
+    "name": "Surjeteuse 4 fils (manches, poches)",
+    "machine_type": "surjeteuse_4_fils",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS07",
+    "name": "Surjeteuse 3 fils (poignets, details)",
+    "machine_type": "surjeteuse_3_fils",
+    "available": true,
+    "max_workers": 1,
+    "section": "Montage"
+   },
+   {
+    "id": "WS08",
+    "name": "Piqueuse 2 aiguilles (ourlets)",
+    "machine_type": "piqueuse_2_aiguilles",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finition"
+   },
+   {
+    "id": "WS09",
+    "name": "Piqueuse boutonnières (auto)",
+    "machine_type": "piqueuse_boutonniere",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finition"
+   },
+   {
+    "id": "WS10",
+    "name": "Piqueuse boutons (auto)",
+    "machine_type": "piqueuse_bouton",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finition"
+   },
+   {
+    "id": "WS11",
+    "name": "Poste contrôle qualité",
+    "machine_type": "table_controle",
+    "available": true,
+    "max_workers": 1,
+    "section": "Qualite"
+   },
+   {
+    "id": "WS12",
+    "name": "Presse vapeur (repassage/formage)",
+    "machine_type": "presse_vapeur",
+    "available": true,
+    "max_workers": 1,
+    "section": "Finition"
+   },
+   {
+    "id": "WS13",
+    "name": "Poste pliage & emballage",
+    "machine_type": "table_travail",
+    "available": true,
+    "max_workers": 1,
+    "section": "Expedition"
+   },
+   {
+    "id": "WS14",
+    "name": "Poste étiquetage & cartonnage",
+    "machine_type": "table_travail",
+    "available": true,
+    "max_workers": 1,
+    "section": "Expedition"
+   }
+  ],
+  "workers": [
+   {
+    "id": "W001",
+    "name": "Marie D.",
+    "skills": [
+     "lecture_plan",
+     "tri_pieces",
+     "marquage_pieces",
+     "thermocollage",
+     "couture_droite",
+     "couture_courbe"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W002",
+    "name": "Ahmed B.",
+    "skills": [
+     "couture_droite",
+     "surjet_4_fils",
+     "surjet_5_fils",
+     "montage_manche"
+    ],
+    "efficiency": 1.05,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W003",
+    "name": "Sophie L.",
+    "skills": [
+     "couture_droite",
+     "piqure_apparente",
+     "pose_col",
+     "pose_poignet",
+     "pose_poche"
+    ],
+    "efficiency": 0.95,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W004",
+    "name": "Karim M.",
+    "skills": [
+     "couture_droite",
+     "surjet_4_fils",
+     "surjet_5_fils",
+     "thermocollage"
+    ],
+    "efficiency": 1.1,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W005",
+    "name": "Fatou S.",
+    "skills": [
+     "piqueuse_2_aiguilles",
+     "ourlet",
+     "piqueuse_boutonniere",
+     "piqueuse_bouton"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W006",
+    "name": "Youssef A.",
+    "skills": [
+     "presse_vapeur",
+     "formage_vapeur",
+     "couture_droite"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W007",
+    "name": "Leila K.",
+    "skills": [
+     "controle_visuel",
+     "controle_mesures",
+     "controle_normes",
+     "lecture_plan"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W008",
+    "name": "Omar T.",
+    "skills": [
+     "pliage_specifique",
+     "mise_sous_poche",
+     "etiquetage_final",
+     "cartonnage"
+    ],
+    "efficiency": 1.0,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W009",
+    "name": "Aicha R.",
+    "skills": [
+     "couture_droite",
+     "couture_courbe",
+     "surjet_3_fils",
+     "pose_passant"
+    ],
+    "efficiency": 0.98,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   },
+   {
+    "id": "W010",
+    "name": "Mehdi L.",
+    "skills": [
+     "couture_droite",
+     "montage_manche",
+     "pose_poche"
+    ],
+    "efficiency": 1.02,
+    "assigned_station": null,
+    "available": true,
+    "skill_levels": {}
+   }
+  ],
+  "max_stations": null,
+  "forced_assignments": {},
+  "forbidden_assignments": {},
+  "same_station_groups": [],
+  "max_machines_per_station": 3,
+  "machine_change_time": 0.0,
+  "section_policy": "prefer",
+  "split_mode": "share"
+ },
+ "expected": {
+  "success": false,
+  "compliant": false,
+  "status": "INFEASIBLE_CONSTRAINTS",
+  "solver": "RPW",
+  "solve_time_seconds": 0.0,
+  "target_cycle_time": 1.2,
+  "stations_used": 5,
+  "actual_cycle_time": 1.2,
+  "efficiency": 70.8,
+  "balance_delay": 29.2,
+  "smoothness_index": 0.96,
+  "operators": 5,
+  "station_details": [
+   {
+    "station": 1,
+    "total_time": 0.95,
+    "load_pct": 79.2,
+    "operations": [
+     "OP010",
+     "OP020"
+    ],
+    "workers": [
+     "Marie D."
+    ],
+    "workstation": "WS01",
+    "parallel": 1,
+    "machine_types": [
+     "table_travail"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS01"
+    ],
+    "worker_ids": [
+     "W001"
+    ],
+    "worker_time": 0.95,
+    "worker_efficiency": 1.0
+   },
+   {
+    "station": 2,
+    "total_time": 0.65,
+    "load_pct": 54.2,
+    "operations": [
+     "OP030"
+    ],
+    "workers": [
+     "Karim M."
+    ],
+    "workstation": "WS12",
+    "parallel": 1,
+    "machine_types": [
+     "presse_vapeur"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS12"
+    ],
+    "worker_ids": [
+     "W004"
+    ],
+    "worker_time": 0.591,
+    "worker_efficiency": 1.1
+   },
+   {
+    "station": 3,
+    "total_time": 0.95,
+    "load_pct": 79.2,
+    "operations": [
+     "OP050"
+    ],
+    "workers": [
+     "Mehdi L."
+    ],
+    "workstation": "WS02",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS02"
+    ],
+    "worker_ids": [
+     "W010"
+    ],
+    "worker_time": 0.931,
+    "worker_efficiency": 1.02
+   },
+   {
+    "station": 4,
+    "total_time": 1.2,
+    "load_pct": 100.0,
+    "operations": [
+     "OP060"
+    ],
+    "workers": [],
+    "workstation": "WS03",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS03"
+    ],
+    "worker_ids": []
+   },
+   {
+    "station": 5,
+    "total_time": 0.5,
+    "load_pct": 41.7,
+    "operations": [
+     "OP070"
+    ],
+    "workers": [
+     "Aicha R."
+    ],
+    "workstation": "WS04",
+    "parallel": 1,
+    "machine_types": [
+     "piqueuse_plate"
+    ],
+    "sections": [
+     "Montage"
+    ],
+    "workstations": [
+     "WS04"
+    ],
+    "worker_ids": [
+     "W009"
+    ],
+    "worker_time": 0.51,
+    "worker_efficiency": 0.98
+   }
+  ],
+  "operation_assignments": {
+   "OP010": 1,
+   "OP020": 1,
+   "OP030": 2,
+   "OP050": 3,
+   "OP060": 4,
+   "OP070": 5
+  },
+  "worker_assignments": {
+   "W001": "WS1",
+   "W004": "WS2",
+   "W010": "WS3",
+   "W009": "WS5"
+  },
+  "warnings": [
+   "Solution RPW (heuristique) - non garantie optimale",
+   "[OP_GT_CYCLE] OP040 (1.40 min) dépasse le cycle 1.20 min. → Dédoublement automatique sur 2 postes parallèles.",
+   "⚠️ Station 4 : aucun ouvrier disponible ne maîtrise TOUTES les compétences requises (couture_courbe, couture_droite)"
+  ],
+  "error_message": "Solution non conforme : Opérations non affectées : OP040, OP080, OP090, OP100, OP110, OP120, OP130, OP140, OP150, OP160, OP170 | [NO_WORKER] Station 4 : ouvrier(s) qualifié(s) manquant(s). | [MACHINE_CAPACITY] 1.25 min sur « presse_vapeur » demandent ≥ 2 poste(s) au cycle 1.20 ; 1 disponible(s). → Ajouter 1 poste(s) presse_vapeur ou allonger le cycle à ≥ 1.25 min. | [MACHINE_CAPACITY] 6.10 min sur « piqueuse_plate » demandent ≥ 6 poste(s) au cycle 1.20 ; 3 disponible(s). → Ajouter 3 poste(s) piqueuse_plate ou allonger le cycle à ≥ 2.03 min. | [SKILL_MISSING] Aucun ouvrier ne maîtrise couture_courbe, pose_poche (OP040). → Former un ouvrier ou corriger les compétences requises. | [SKILL_MISSING] Aucun ouvrier ne maîtrise repassage, formage_vapeur (OP150). → Former un ouvrier ou corriger les compétences requises. | [SKILL_CAPACITY] OP020, OP040, OP150 (2.55 min, compétences couture_courbe, formage_vapeur, marquage_pieces, pose_poche, repassage, tri_pieces) ne peuvent être faites que par 1 ouvrier(s) (Marie D.) ; il en faut ≥ 3 à la cadence 1.20. → Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, marquage_pieces, pose_poche, repassage, tri_pieces ou allonger la cadence (au moins 2.55 min, davantage selon le découpage des opérations). | [SKILL_CAPACITY] OP040, OP070, OP110, OP150 (2.90 min, compétences couture_courbe, couture_droite, formage_vapeur, pose_passant, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Aicha R.) ; il en faut ≥ 3 à la cadence 1.20. → Former 2 ouvrier(s) de plus sur couture_courbe, couture_droite, formage_vapeur, pose_passant, pose_poche, repassage ou allonger la cadence (au moins 2.90 min, davantage selon le découpage des opérations). | [SKILL_CAPACITY] OP040, OP120, OP150 (2.55 min, compétences couture_courbe, formage_vapeur, piqure_apparente, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Sophie L.) ; il en faut ≥ 3 à la cadence 1.20. → Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, piqure_apparente, pose_poche, repassage ou allonger la cadence (au moins 2.55 min, davantage selon le découpage des opérations). | [SKILL_CAPACITY] OP040, OP130, OP150 (2.70 min, compétences couture_courbe, formage_vapeur, ourlet, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Fatou S.) ; il en faut ≥ 3 à la cadence 1.20. → Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, ourlet, pose_poche, repassage ou allonger la cadence (au moins 2.70 min, davantage selon le découpage des opérations). | [SKILL_CAPACITY] OP040, OP060 (2.60 min, compétences couture_courbe, couture_droite, pose_poche) ne peuvent être faites que par 2 ouvrier(s) (Marie D., Aicha R.) ; il en faut ≥ 3 à la cadence 1.20. → Former 1 ouvrier(s) de plus sur couture_courbe, couture_droite, pose_poche ou allonger la cadence (au moins 1.30 min, davantage selon le découpage des opérations).",
+  "violations": [
+   {
+    "code": "NO_WORKER",
+    "severity": "error",
+    "message": "Station 4 : ouvrier(s) qualifié(s) manquant(s).",
+    "suggestion": ""
+   }
+  ]
+ },
+ "precheck": {
+  "feasible": false,
+  "issues": [
+   {
+    "code": "OP_GT_CYCLE",
+    "severity": "warning",
+    "message": "OP040 (1.40 min) dépasse le cycle 1.20 min.",
+    "suggestion": "Dédoublement automatique sur 2 postes parallèles."
+   },
+   {
+    "code": "MACHINE_CAPACITY",
+    "severity": "error",
+    "message": "1.25 min sur « presse_vapeur » demandent ≥ 2 poste(s) au cycle 1.20 ; 1 disponible(s).",
+    "suggestion": "Ajouter 1 poste(s) presse_vapeur ou allonger le cycle à ≥ 1.25 min."
+   },
+   {
+    "code": "MACHINE_CAPACITY",
+    "severity": "error",
+    "message": "6.10 min sur « piqueuse_plate » demandent ≥ 6 poste(s) au cycle 1.20 ; 3 disponible(s).",
+    "suggestion": "Ajouter 3 poste(s) piqueuse_plate ou allonger le cycle à ≥ 2.03 min."
+   },
+   {
+    "code": "SKILL_MISSING",
+    "severity": "error",
+    "message": "Aucun ouvrier ne maîtrise couture_courbe, pose_poche (OP040).",
+    "suggestion": "Former un ouvrier ou corriger les compétences requises."
+   },
+   {
+    "code": "SKILL_MISSING",
+    "severity": "error",
+    "message": "Aucun ouvrier ne maîtrise repassage, formage_vapeur (OP150).",
+    "suggestion": "Former un ouvrier ou corriger les compétences requises."
+   },
+   {
+    "code": "SKILL_CAPACITY",
+    "severity": "error",
+    "message": "OP020, OP040, OP150 (2.55 min, compétences couture_courbe, formage_vapeur, marquage_pieces, pose_poche, repassage, tri_pieces) ne peuvent être faites que par 1 ouvrier(s) (Marie D.) ; il en faut ≥ 3 à la cadence 1.20.",
+    "suggestion": "Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, marquage_pieces, pose_poche, repassage, tri_pieces ou allonger la cadence (au moins 2.55 min, davantage selon le découpage des opérations)."
+   },
+   {
+    "code": "SKILL_CAPACITY",
+    "severity": "error",
+    "message": "OP040, OP070, OP110, OP150 (2.90 min, compétences couture_courbe, couture_droite, formage_vapeur, pose_passant, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Aicha R.) ; il en faut ≥ 3 à la cadence 1.20.",
+    "suggestion": "Former 2 ouvrier(s) de plus sur couture_courbe, couture_droite, formage_vapeur, pose_passant, pose_poche, repassage ou allonger la cadence (au moins 2.90 min, davantage selon le découpage des opérations)."
+   },
+   {
+    "code": "SKILL_CAPACITY",
+    "severity": "error",
+    "message": "OP040, OP120, OP150 (2.55 min, compétences couture_courbe, formage_vapeur, piqure_apparente, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Sophie L.) ; il en faut ≥ 3 à la cadence 1.20.",
+    "suggestion": "Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, piqure_apparente, pose_poche, repassage ou allonger la cadence (au moins 2.55 min, davantage selon le découpage des opérations)."
+   },
+   {
+    "code": "SKILL_CAPACITY",
+    "severity": "error",
+    "message": "OP040, OP130, OP150 (2.70 min, compétences couture_courbe, formage_vapeur, ourlet, pose_poche, repassage) ne peuvent être faites que par 1 ouvrier(s) (Fatou S.) ; il en faut ≥ 3 à la cadence 1.20.",
+    "suggestion": "Former 2 ouvrier(s) de plus sur couture_courbe, formage_vapeur, ourlet, pose_poche, repassage ou allonger la cadence (au moins 2.70 min, davantage selon le découpage des opérations)."
+   },
+   {
+    "code": "SKILL_CAPACITY",
+    "severity": "error",
+    "message": "OP040, OP060 (2.60 min, compétences couture_courbe, couture_droite, pose_poche) ne peuvent être faites que par 2 ouvrier(s) (Marie D., Aicha R.) ; il en faut ≥ 3 à la cadence 1.20.",
+    "suggestion": "Former 1 ouvrier(s) de plus sur couture_courbe, couture_droite, pose_poche ou allonger la cadence (au moins 1.30 min, davantage selon le découpage des opérations)."
+   }
+  ],
+  "validation_errors": [
+   "Compétence requise 'repassage' non disponible dans l'effectif"
+  ]
+ }
+}

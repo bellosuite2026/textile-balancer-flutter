@@ -1,0 +1,330 @@
+[
+ {
+  "id": "OP010",
+  "name": "Préparation & lecture plan",
+  "duration": 0.5,
+  "predecessors": [],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "lecture_plan"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP020",
+  "name": "Tri & marquage pièces (devants, dos, manches, col, revers, poches, doublure)",
+  "duration": 0.8,
+  "predecessors": [
+   "OP010"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "tri_pieces",
+   "marquage_pieces"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP030",
+  "name": "Thermocollage pièces (revers, col, parementures, poches, manches)",
+  "duration": 1.1,
+  "predecessors": [
+   "OP020"
+  ],
+  "machine_type": "presse_vapeur",
+  "required_skills": [
+   "thermocollage"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP040",
+  "name": "Montage poches passepoilées (devants)",
+  "duration": 2.2,
+  "predecessors": [
+   "OP030"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "poche_passepoilee"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP050",
+  "name": "Montage poches poitrine (plaquée + rabat)",
+  "duration": 1.1,
+  "predecessors": [
+   "OP030"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "pose_poche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP060",
+  "name": "Assemblage corps (épaules + côtés)",
+  "duration": 0.95,
+  "predecessors": [
+   "OP040",
+   "OP050"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP070",
+  "name": "Préparation & montage revers (couture + cranage + retournement)",
+  "duration": 1.8,
+  "predecessors": [
+   "OP030"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP080",
+  "name": "Montage revers sur corps (revers + col)",
+  "duration": 1.4,
+  "predecessors": [
+   "OP060",
+   "OP070"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "pose_col"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP090",
+  "name": "Préparation manches (couture manche + fente + poignet)",
+  "duration": 2.1,
+  "predecessors": [
+   "OP030"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite",
+   "montage_manche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP100",
+  "name": "Montage manches dans emmanchures (emboitage)",
+  "duration": 1.3,
+  "predecessors": [
+   "OP080",
+   "OP090"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe",
+   "montage_manche"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP110",
+  "name": "Fermeture côtés corps + manches (une seule couture)",
+  "duration": 0.95,
+  "predecessors": [
+   "OP100"
+  ],
+  "machine_type": "surjeteuse_5_fils",
+  "required_skills": [
+   "surjet_5_fils"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP120",
+  "name": "Montage doublure (corps + manches)",
+  "duration": 1.6,
+  "predecessors": [
+   "OP030"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_droite"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP130",
+  "name": "Pose doublure dans veste (enfourchement + retournement)",
+  "duration": 1.8,
+  "predecessors": [
+   "OP110",
+   "OP120"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "couture_courbe"
+  ],
+  "section": "Montage",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP140",
+  "name": "Piqure apparente (bords, revers, poches, manches)",
+  "duration": 1.2,
+  "predecessors": [
+   "OP130"
+  ],
+  "machine_type": "piqueuse_plate",
+  "required_skills": [
+   "piqure_apparente"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP150",
+  "name": "Boutonnières (2-3 devant + 1 manche)",
+  "duration": 0.85,
+  "predecessors": [
+   "OP140"
+  ],
+  "machine_type": "piqueuse_boutonniere",
+  "required_skills": [
+   "piqueuse_boutonniere"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP160",
+  "name": "Pose boutons (devant + manche)",
+  "duration": 0.4,
+  "predecessors": [
+   "OP150"
+  ],
+  "machine_type": "piqueuse_bouton",
+  "required_skills": [
+   "piqueuse_bouton"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP170",
+  "name": "Ourlet bas veste + manches (invisible)",
+  "duration": 0.9,
+  "predecessors": [
+   "OP110"
+  ],
+  "machine_type": "piqueuse_2_aiguilles",
+  "required_skills": [
+   "ourlet"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP180",
+  "name": "Contrôle visuel & mesures complet",
+  "duration": 0.5,
+  "predecessors": [
+   "OP140",
+   "OP170"
+  ],
+  "machine_type": "table_controle",
+  "required_skills": [
+   "controle_visuel",
+   "controle_mesures"
+  ],
+  "section": "Qualite",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP190",
+  "name": "Repassage final complet (vapeur + forme corps/manches)",
+  "duration": 1.0,
+  "predecessors": [
+   "OP180"
+  ],
+  "machine_type": "presse_vapeur",
+  "required_skills": [
+   "repassage",
+   "formage_vapeur"
+  ],
+  "section": "Finition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP200",
+  "name": "Pliage veste + housse",
+  "duration": 0.45,
+  "predecessors": [
+   "OP190"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "pliage_specifique",
+   "mise_sous_poche"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ },
+ {
+  "id": "OP210",
+  "name": "Étiquetage + cartonnage",
+  "duration": 0.3,
+  "predecessors": [
+   "OP200"
+  ],
+  "machine_type": "table_travail",
+  "required_skills": [
+   "etiquetage_final",
+   "cartonnage"
+  ],
+  "section": "Expedition",
+  "optional": false,
+  "task_type": "VA"
+ }
+]

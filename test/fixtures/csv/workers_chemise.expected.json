@@ -1,0 +1,279 @@
+[
+ {
+  "id": "W001",
+  "name": "Marie D.",
+  "skills": [
+   "lecture_plan",
+   "couture_droite",
+   "couture_courbe",
+   "tri_pieces",
+   "marquage_pieces",
+   "pose_poche",
+   "thermocollage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W002",
+  "name": "Ahmed B.",
+  "skills": [
+   "couture_droite",
+   "couture_courbe",
+   "piqure_apparente",
+   "piqueuse_boutonniere",
+   "piqueuse_bouton"
+  ],
+  "efficiency": 1.05,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W003",
+  "name": "Sophie L.",
+  "skills": [
+   "couture_droite",
+   "surjet_4_fils",
+   "surjet_5_fils"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W004",
+  "name": "Karim M.",
+  "skills": [
+   "couture_droite",
+   "couture_courbe",
+   "pose_col",
+   "pose_poignet",
+   "montage_manche"
+  ],
+  "efficiency": 0.95,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W005",
+  "name": "Fatou S.",
+  "skills": [
+   "couture_droite",
+   "piqueuse_2_aiguilles",
+   "ourlet"
+  ],
+  "efficiency": 0.98,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W006",
+  "name": "Youssef A.",
+  "skills": [
+   "couture_droite",
+   "piqueuse_boutonniere",
+   "piqueuse_bouton"
+  ],
+  "efficiency": 1.02,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W007",
+  "name": "Leila K.",
+  "skills": [
+   "controle_visuel",
+   "controle_mesures",
+   "lecture_plan"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W008",
+  "name": "Omar T.",
+  "skills": [
+   "presse_vapeur",
+   "formage_vapeur",
+   "repassage_fer",
+   "repassage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W009",
+  "name": "Amina R.",
+  "skills": [
+   "pliage",
+   "mise_sous_poche",
+   "etiquetage_final",
+   "cartonnage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W010",
+  "name": "Samir H.",
+  "skills": [
+   "couture_droite",
+   "surjet_3_fils",
+   "thermocollage",
+   "tri_pieces"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W011",
+  "name": "Nadia L.",
+  "skills": [
+   "couture_droite",
+   "couture_courbe",
+   "pose_col",
+   "pose_poche"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W012",
+  "name": "Hakim B.",
+  "skills": [
+   "couture_droite",
+   "surjet_5_fils",
+   "montage_manche"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W013",
+  "name": "Salma R.",
+  "skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "piqueuse_boutonniere"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W014",
+  "name": "Yassin T.",
+  "skills": [
+   "couture_droite",
+   "piqueuse_2_aiguilles",
+   "ourlet"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W015",
+  "name": "Khadija M.",
+  "skills": [
+   "piqueuse_boutonniere",
+   "piqueuse_bouton",
+   "controle_visuel",
+   "controle_mesures"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W016",
+  "name": "Mehdi A.",
+  "skills": [
+   "presse_vapeur",
+   "formage_vapeur",
+   "repassage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W017",
+  "name": "Fatima Z.",
+  "skills": [
+   "pliage",
+   "mise_sous_poche",
+   "etiquetage_final",
+   "cartonnage"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W018",
+  "name": "Omar T.",
+  "skills": [
+   "couture_droite",
+   "couture_courbe",
+   "pose_col",
+   "pose_poignet",
+   "montage_manche"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W019",
+  "name": "Leila K.",
+  "skills": [
+   "couture_droite",
+   "piqure_apparente",
+   "piqueuse_boutonniere",
+   "piqueuse_bouton"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ },
+ {
+  "id": "W020",
+  "name": "Youssef A.",
+  "skills": [
+   "surjet_5_fils",
+   "couture_droite",
+   "montage_manche"
+  ],
+  "efficiency": 1.0,
+  "assigned_station": null,
+  "available": true,
+  "skill_levels": {}
+ }
+]
