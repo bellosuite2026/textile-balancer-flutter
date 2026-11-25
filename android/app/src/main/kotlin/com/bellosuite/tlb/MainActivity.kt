@@ -1,4 +1,4 @@
-package com.example.textile_balancer_flutter
+package com.bellosuite.tlb
 
 import io.flutter.embedding.android.FlutterActivity
 

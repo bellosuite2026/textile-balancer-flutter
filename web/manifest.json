@@ -1,12 +1,12 @@
 {
-    "name": "textile_balancer_flutter",
-    "short_name": "textile_balancer_flutter",
+    "name": "Textile Line Balancer",
+    "short_name": "TLB",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#F5F6F8",
+    "theme_color": "#1E3A5F",
+    "description": "Équilibrage de lignes de confection et suivi de production, hors ligne d'abord.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
@@ -31,5 +31,6 @@
             "type": "image/png",
             "purpose": "maskable"
         }
-    ]
+    ],
+    "lang": "fr"
 }
