@@ -17,3 +17,5 @@ export 'pyfmt.dart';
 export 'resources.dart';
 export 'rpw.dart';
 export 'simulation.dart';
+export 'twin.dart';
+export 'workshop.dart';

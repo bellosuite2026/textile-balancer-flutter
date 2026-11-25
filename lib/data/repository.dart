@@ -140,4 +140,18 @@ class Repository {
     if (b == null || b.stationDetails.isEmpty) return null;
     return buildPlan(b, r.problem);
   }
+
+  // ---------------------------------------------------------------- plans d'atelier, implantations (phase 2)
+  List<Map<String, dynamic>> plans(String workshopId) => [
+        for (final j in store.all(Col.plans))
+          if (j['workshop_id'] == workshopId) j,
+      ]..sort((a, b) => '${b['updated_at']}'.compareTo('${a['updated_at']}'));
+
+  Map<String, dynamic>? plan(String id) => store.get(Col.plans, id);
+  Future<void> savePlan(Map<String, dynamic> p) => store.put(Col.plans, '${p['id']}', p);
+  Future<void> deletePlan(String id) => store.delete(Col.plans, id);
+
+  /// Implantation du jumeau pour un calcul : `{kind, positions, local_plan_id?, assignment?}`.
+  Map<String, dynamic>? runLayout(String runId) => store.get(Col.layouts, runId);
+  Future<void> saveRunLayout(String runId, Map<String, dynamic> layout) => store.put(Col.layouts, runId, layout);
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../core/format.dart';
+import '../features/analysis/analysis_hub_screen.dart';
 import '../features/calcul/new_run_screen.dart';
 import '../features/gamme/gamme_list_screen.dart';
 import '../features/history/history_screen.dart';
@@ -41,6 +42,7 @@ const _dests = [
   _Dest('Nouveau calcul', Icons.calculate_outlined, Icons.calculate),
   _Dest('Historique', Icons.history_outlined, Icons.history),
   _Dest('Production', Icons.precision_manufacturing_outlined, Icons.precision_manufacturing),
+  _Dest('Analyse', Icons.insights_outlined, Icons.insights),
   _Dest('Atelier & compte', Icons.settings_outlined, Icons.settings),
 ];
 
@@ -53,6 +55,7 @@ class AppShell extends StatelessWidget {
         2 => const NewRunScreen(),
         3 => const HistoryScreen(),
         4 => const ProductionScreen(),
+        5 => const AnalysisHubScreen(),
         _ => const SettingsScreen(),
       };
 

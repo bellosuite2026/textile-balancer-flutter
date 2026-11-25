@@ -432,7 +432,93 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ================================================================ production
+  // ================================================================ phase 2 : plans d'atelier, implantations
+  List<Map<String, dynamic>> get workshopPlans => workshop == null ? [] : repo.plans(workshop!.id);
+
+  /// Enregistre un plan sur l'appareil puis, en ligne (cloud), le crée / met à jour côté API.
+  /// Retourne un message d'erreur de synchronisation (null si tout va bien ou hors ligne).
+  Future<String?> savePlan(Map<String, dynamic> plan) async {
+    plan['workshop_id'] ??= workshop!.id;
+    plan['updated_at'] = DateTime.now().toIso8601String();
+    plan['dirty'] = true;
+    await repo.savePlan(plan);
+    notifyListeners();
+    return syncPlan(plan);
+  }
+
+  Future<String?> syncPlan(Map<String, dynamic> plan) async {
+    if (!cloudAvailable) return null;
+    try {
+      final body = planApiBody(plan);
+      final cid = plan['cloud_id'] as String?;
+      final row = cid == null
+          ? await api.createWorkshopPlan(workshop!.id, body)
+          : await api.updateWorkshopPlan(workshop!.id, cid, body);
+      plan['cloud_id'] = row['id']?.toString() ?? cid;
+      plan['dirty'] = false;
+      await repo.savePlan(plan);
+      notifyListeners();
+      return null;
+    } on ApiException catch (e) {
+      return e.message;
+    }
+  }
+
+  /// Récupère les plans de l'atelier cloud absents de l'appareil.
+  Future<int> pullPlans() async {
+    if (!cloudAvailable) return 0;
+    final known = {for (final p in workshopPlans) p['cloud_id']};
+    var n = 0;
+    for (final row in await api.workshopPlans(workshop!.id)) {
+      if (known.contains(row['id'])) continue;
+      final full = await api.workshopPlan(workshop!.id, '${row['id']}');
+      await repo.savePlan({
+        ...full,
+        'id': 'plan-${row['id']}',
+        'cloud_id': '${row['id']}',
+        'workshop_id': workshop!.id,
+        'dirty': false,
+        'updated_at': '${full['updated_at'] ?? DateTime.now().toIso8601String()}',
+      });
+      n++;
+    }
+    if (n > 0) notifyListeners();
+    return n;
+  }
+
+  Future<void> deletePlan(Map<String, dynamic> plan) async {
+    await repo.deletePlan('${plan['id']}');
+    final cid = plan['cloud_id'] as String?;
+    if (cid != null && cloudAvailable) {
+      try {
+        await api.deleteWorkshopPlan(workshop!.id, cid);
+      } on ApiException {
+        // suppression locale conservée ; le plan serveur reste (droits ou réseau)
+      }
+    }
+    notifyListeners();
+  }
+
+  /// Implantation du jumeau d'un calcul ; en ligne, enregistrée aussi côté API (`PUT /layout`).
+  Future<String?> saveRunLayout(RunRecord run, Map<String, dynamic> layout) async {
+    await repo.saveRunLayout(run.id, layout);
+    if (!cloudAvailable || run.cloudId == null) return null;
+    try {
+      final planCloud = layout['local_plan_id'] == null ? null : repo.plan('${layout['local_plan_id']}')?['cloud_id'];
+      await api.putLayout(
+        workshop!.id,
+        run.cloudId!,
+        planCloud != null
+            ? {'plan_id': planCloud, 'assignment': layout['assignment'] ?? const {}}
+            : {'kind': layout['kind'] ?? 'line', 'positions': layout['positions'] ?? const {}},
+      );
+      return null;
+    } on ApiException catch (e) {
+      return e.message;
+    }
+  }
+
+    // ================================================================ production
   List<SessionRecord> get sessions => workshop == null ? [] : repo.sessions(workshop!.id);
 
   Future<SessionRecord> openSession(RunRecord run,

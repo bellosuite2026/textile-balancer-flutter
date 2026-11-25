@@ -15,6 +15,7 @@ import '../../engine/engine.dart';
 import '../../state/app_state.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../analysis/analysis_hub_screen.dart';
 import '../production/session_form.dart';
 import '../simulation/simulation_screen.dart';
 import 'yamazumi_chart.dart';
@@ -292,6 +293,7 @@ class _ResultScreenState extends State<ResultScreen> {
             icon: const Icon(Icons.play_circle_outline),
             label: const Text('Simulation rapide'),
           ),
+          ...analysisButtons(context, r),
           if (r.kind == 'balance')
             OutlinedButton.icon(
               onPressed: _busy ? null : () => _rerun(kind: 'min_cycle'),

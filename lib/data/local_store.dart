@@ -21,7 +21,9 @@ abstract class Col {
   static const sessions = 'sessions';
   static const entries = 'entries';
   static const outbox = 'outbox';
-  static const all = [settings, workshops, gammes, runs, sessions, entries, outbox];
+  static const plans = 'workshop_plans'; // plans d'atelier (format API)
+  static const layouts = 'twin_layouts'; // implantation du jumeau par calcul
+  static const all = [settings, workshops, gammes, runs, sessions, entries, outbox, plans, layouts];
 }
 
 abstract class LocalStore {

@@ -320,6 +320,81 @@ class ApiClient {
 
   Future<Uint8List> sessionExport(String org, String sessionId, String ext) =>
       _bytes('${_sessions(org)}/$sessionId/export.$ext');
+
+  // ------------------------------------------------------------ phase 2 : jumeau, plan, DES, optimiseur
+  Map<String, dynamic> _m(dynamic v) => (v as Map).cast<String, dynamic>();
+  List<Map<String, dynamic>> _l(dynamic v) => [for (final e in (v as List? ?? const [])) (e as Map).cast<String, dynamic>()];
+
+  /// Plan de ligne, implantation enregistrée, sessions et simulations d'un calcul (`routes_twin.py`).
+  Future<Map<String, dynamic>> twin(String org, String runId) async => _m(await _send('GET', '/v1/orgs/$org/runs/$runId/twin'));
+
+  /// Implantation : `{kind, positions}` ou `{plan_id, assignment}`.
+  Future<Map<String, dynamic>> putLayout(String org, String runId, Map<String, dynamic> layout) async =>
+      _m(await _send('PUT', '/v1/orgs/$org/runs/$runId/layout', body: layout));
+
+  /// Lance 1–3 scénarios du jumeau (tâche de fond) → ligne `twin_simulations` (statut queued).
+  Future<Map<String, dynamic>> simulateTwin(String org, String runId, List<Map<String, dynamic>> scenarios,
+          {String name = '', Map<String, dynamic>? layout}) async =>
+      _m(await _send('POST', '/v1/orgs/$org/runs/$runId/simulate',
+          body: {'name': name, 'scenarios': scenarios, 'layout': ?layout}));
+
+  /// Statut + résultats d'une simulation (jumeau, DES, optimisation).
+  Future<Map<String, dynamic>> simulation(String org, String simId) async =>
+      _m(await _send('GET', '/v1/orgs/$org/simulations/$simId'));
+
+  /// Attend la fin d'une simulation de fond (progression transmise à [onProgress]).
+  Future<Map<String, dynamic>> waitSimulation(String org, String simId,
+      {Duration every = const Duration(seconds: 2), int maxTries = 200, void Function(Map<String, dynamic>)? onProgress}) async {
+    for (var i = 0; i < maxTries; i++) {
+      final s = await simulation(org, simId);
+      final st = s['status'];
+      if (st == 'done') return s;
+      if (st == 'failed') throw ApiException(500, 'Simulation en échec : ${s['error'] ?? ''}');
+      onProgress?.call(s);
+      await Future<void>.delayed(every);
+    }
+    throw ApiException(0, 'La simulation n\'est pas terminée : réessayez plus tard.');
+  }
+
+  /// Réel vs simulé d'une session de production (`/twin/sync`).
+  Future<Map<String, dynamic>> twinSync(String org, String runId, String sessionId, {int bundleSize = 10}) async =>
+      _m(await _send('GET', '/v1/orgs/$org/runs/$runId/twin/sync?session_id=$sessionId&bundle_size=$bundleSize'));
+
+  Future<Map<String, dynamic>> workshopCatalog(String org) async => _m(await _send('GET', '/v1/orgs/$org/workshop-catalog'));
+  Future<List<Map<String, dynamic>>> workshopPlans(String org) async => _l(await _send('GET', '/v1/orgs/$org/workshop-plans'));
+  Future<Map<String, dynamic>> workshopPlan(String org, String id) async =>
+      _m(await _send('GET', '/v1/orgs/$org/workshop-plans/$id'));
+  Future<Map<String, dynamic>> createWorkshopPlan(String org, Map<String, dynamic> body) async =>
+      _m(await _send('POST', '/v1/orgs/$org/workshop-plans', body: body));
+  Future<Map<String, dynamic>> updateWorkshopPlan(String org, String id, Map<String, dynamic> body) async =>
+      _m(await _send('PUT', '/v1/orgs/$org/workshop-plans/$id', body: body));
+  Future<void> deleteWorkshopPlan(String org, String id) => _send('DELETE', '/v1/orgs/$org/workshop-plans/$id');
+
+  /// Modèle DES généré pour un calcul + historique (`routes_des.py`).
+  Future<Map<String, dynamic>> desModel(String org, String runId) async =>
+      _m(await _send('GET', '/v1/orgs/$org/runs/$runId/des/model'));
+
+  /// Simulation détaillée : scénarios `{name, overrides, absent}` × réplications → 202.
+  Future<Map<String, dynamic>> runDes(String org, String runId,
+          {required List<Map<String, dynamic>> scenarios, int replications = 5, String name = ''}) async =>
+      _m(await _send('POST', '/v1/orgs/$org/runs/$runId/des',
+          body: {'name': name, 'scenarios': scenarios, 'replications': replications}));
+
+  Future<List<Map<String, dynamic>>> desSimulations(String org, String runId) async =>
+      _l(await _send('GET', '/v1/orgs/$org/runs/$runId/des/simulations'));
+
+  /// Optimiseur multi-objectif (NSGA-II, budget borné côté serveur) → 202.
+  Future<Map<String, dynamic>> optimize(String org, String runId, Map<String, dynamic> config, {String name = ''}) async =>
+      _m(await _send('POST', '/v1/orgs/$org/runs/$runId/optimize', body: {'name': name, 'config': config}));
+
+  Future<List<Map<String, dynamic>>> optimizations(String org, String runId) async =>
+      _l(await _send('GET', '/v1/orgs/$org/runs/$runId/optimizations'));
+
+  /// Applique une solution du front de Pareto : simulation DES (+ implantation enregistrée).
+  Future<Map<String, dynamic>> applyOptimization(String org, String simId, int solution,
+          {bool saveLayout = true, int replications = 5}) async =>
+      _m(await _send('POST', '/v1/orgs/$org/optimizations/$simId/apply',
+          body: {'solution': solution, 'save_layout': saveLayout, 'replications': replications}));
 }
 
 /// Échec avant toute réponse HTTP : réseau coupé, serveur en veille, ou requête
