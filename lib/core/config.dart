@@ -12,6 +12,8 @@ class AppConfig {
       String.fromEnvironment('TLB_SUPABASE_URL', defaultValue: 'https://lkdlqijhlszyfkmunzyt.supabase.co');
   static const supabasePublishableKey =
       String.fromEnvironment('TLB_SUPABASE_KEY', defaultValue: 'sb_publishable_MFaWSChslfBhcg37fi_RuA_ZEKrzNX1');
+  /// Application Web publique (liens des e-mails hors navigateur).
+  static const webAppUrl = String.fromEnvironment('TLB_WEB_URL', defaultValue: 'https://textile-line-balancer.pages.dev/');
   static const appName = 'Textile Line Balancer';
   static const version = '1.1.0';
 

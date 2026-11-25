@@ -46,6 +46,13 @@ class AppState extends ChangeNotifier {
   WorkshopRecord? workshop;
   Timer? _timer;
   bool _ready = false;
+  StreamSubscription<AuthEvent>? _authSub;
+  bool _checkingNet = false;
+  bool _firstPing = true;
+  bool _authBusy = false;
+
+  /// Lien « mot de passe oublié » ouvert : l'utilisateur doit choisir un nouveau mot de passe.
+  bool passwordRecovery = false;
 
   bool get ready => _ready;
   bool get isCloud => mode == AppMode.cloud;
@@ -67,6 +74,7 @@ class AppState extends ChangeNotifier {
     }
     final wid = repo.setting('workshop');
     if (wid != null) workshop = repo.workshop(wid);
+    _authSub = api.authEvents.listen(_onAuthEvent);
     _ready = true;
     notifyListeners();
     if (enableNetwork) {
@@ -78,15 +86,75 @@ class AppState extends ChangeNotifier {
   @override
   void dispose() {
     _timer?.cancel();
+    _authSub?.cancel();
     super.dispose();
   }
 
+  /// Le premier ping tolère le réveil de Render (offre gratuite, ~1 min) ; les
+  /// suivants sont plus courts. Un seul contrôle à la fois.
   Future<void> checkNetwork() async {
-    final ok = await api.health();
-    final was = net;
-    net = ok ? NetStatus.online : NetStatus.offline;
-    if (was != net) notifyListeners();
-    if (ok && isCloud && api.isSignedIn) await sync();
+    if (_checkingNet) return;
+    _checkingNet = true;
+    try {
+      final first = _firstPing || net != NetStatus.online;
+      final ok = await api.health(timeout: Duration(seconds: first ? 60 : 20), retries: first ? 1 : 0);
+      _firstPing = false;
+      final was = net;
+      net = ok ? NetStatus.online : NetStatus.offline;
+      if (was != net) notifyListeners();
+      if (ok && isCloud && api.isSignedIn) await sync();
+    } finally {
+      _checkingNet = false;
+    }
+  }
+
+  // ================================================================ compte (Supabase Auth)
+  void _onAuthEvent(AuthEvent e) {
+    if (e == AuthEvent.passwordRecovery) {
+      passwordRecovery = true;
+      notifyListeners();
+    } else if (e == AuthEvent.signedIn && mode == AppMode.none && !_authBusy && !passwordRecovery && api.isSignedIn) {
+      // Retour depuis le lien de confirmation d'e-mail : session ouverte, on entre en mode cloud.
+      final email = api.email;
+      if (email != null) unawaited(_enterCloud(email).catchError((_) {}));
+    }
+  }
+
+  /// Crée le compte. `true` : connecté tout de suite ; `false` : confirmation par e-mail requise.
+  Future<bool> signUp(String email, String password, {String? name}) async {
+    _authBusy = true;
+    try {
+      final hasSession = await api.signUp(email, password, name: name);
+      await repo.setSetting('email', email);
+      if (hasSession) await _enterCloud(email);
+      return hasSession;
+    } finally {
+      _authBusy = false;
+    }
+  }
+
+  Future<void> resetPassword(String email) => api.resetPassword(email);
+
+  /// Fin du parcours « mot de passe oublié » : nouveau mot de passe puis accès au compte.
+  Future<void> completePasswordRecovery(String password) async {
+    await api.updatePassword(password);
+    passwordRecovery = false;
+    final email = api.email ?? userEmail ?? repo.setting('email');
+    if (mode == AppMode.none && email != null) {
+      _authBusy = true;
+      try {
+        await _enterCloud(email);
+      } finally {
+        _authBusy = false;
+      }
+    }
+    notifyListeners();
+  }
+
+  Future<void> cancelPasswordRecovery() async {
+    passwordRecovery = false;
+    if (mode == AppMode.none) await api.signOut();
+    notifyListeners();
   }
 
   // ================================================================ modes
@@ -102,13 +170,30 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> signIn(String email, String password) async {
-    await api.signIn(email, password);
+    _authBusy = true;
+    try {
+      await api.signIn(email, password);
+      await _enterCloud(email);
+    } finally {
+      _authBusy = false;
+    }
+  }
+
+  Future<void> _enterCloud(String email) async {
     mode = AppMode.cloud;
     userEmail = email;
     await repo.setSetting('mode', 'cloud');
     await repo.setSetting('email', email);
-    net = NetStatus.online;
-    await refreshWorkshops();
+    try {
+      await refreshWorkshops();
+      net = NetStatus.online;
+    } on ApiException catch (e) {
+      // Authentifié mais API injoignable : l'écran des ateliers affichera l'erreur et réessaiera.
+      lastSyncError = e.message;
+      if (e.status == 0) net = NetStatus.offline;
+      notifyListeners();
+      return;
+    }
     final cloud = repo.workshops(kind: 'cloud');
     if (cloud.length == 1) await selectWorkshop(cloud.first);
     notifyListeners();
@@ -136,6 +221,12 @@ class AppState extends ChangeNotifier {
     if (isCloud) {
       final o = await api.createOrg(name);
       w = WorkshopRecord.fromOrg({...o, 'role': 'owner'});
+      await repo.saveWorkshop(w);
+      // La réponse ne contient pas l'abonnement d'essai : on relit /v1/me (au mieux).
+      try {
+        await refreshWorkshops();
+        w = repo.workshop(w.id) ?? w;
+      } on ApiException catch (_) {}
     } else {
       w = WorkshopRecord(id: uuid4(), name: name, kind: 'local');
     }

@@ -42,6 +42,7 @@ class RootGate extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = context.watch<AppState>();
     if (!s.ready) return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    if (s.passwordRecovery) return const PasswordRecoveryScreen();
     if (s.mode == AppMode.none) return const LoginScreen();
     if (s.workshop == null) return const WorkshopSelectScreen();
     return const AppShell();

@@ -30,25 +30,47 @@ class _WorkshopSelectScreenState extends State<WorkshopSelectScreen> {
   }
 
   Future<void> _refresh() async {
-    setState(() => _busy = true);
+    final s = context.read<AppState>();
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
     try {
-      await context.read<AppState>().refreshWorkshops();
+      try {
+        await s.refreshWorkshops();
+      } on ApiException catch (e) {
+        // Serveur en veille (Render gratuit) : on le réveille puis on réessaie une fois.
+        if (e.status != 0) rethrow;
+        if (mounted) setState(() => _error = 'Réveil du serveur en cours (jusqu\'à une minute)…');
+        if (!await s.api.health(timeout: const Duration(seconds: 60), retries: 1)) rethrow;
+        await s.refreshWorkshops();
+      }
       _error = null;
     } on ApiException catch (e) {
-      _error = '${e.message} Ateliers en cache affichés.';
+      _error = '${e.message}${s.workshops.isEmpty ? '' : ' Ateliers en cache affichés.'}';
     } finally {
       if (mounted) setState(() => _busy = false);
     }
   }
 
   Future<void> _create() async {
-    final name = await promptText(context, 'Nouvel atelier', label: 'Nom de l\'atelier');
-    if (name == null || name.length < 2 || !mounted) return;
+    final name = (await promptText(context, 'Nouvel atelier', label: 'Nom de l\'atelier'))?.trim();
+    if (name == null || !mounted) return;
+    if (name.length < 2) {
+      showSnack(context, 'Le nom de l\'atelier doit faire au moins 2 caractères.', error: true);
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
     try {
       final w = await context.read<AppState>().createWorkshop(name);
       if (mounted) await context.read<AppState>().selectWorkshop(w);
     } on ApiException catch (e) {
-      if (mounted) showSnack(context, e.message, error: true);
+      if (mounted) setState(() => _error = 'Création de l\'atelier impossible. ${e.message}');
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
@@ -75,11 +97,11 @@ class _WorkshopSelectScreenState extends State<WorkshopSelectScreen> {
         actions: [
           if (s.isCloud)
             IconButton(onPressed: _busy ? null : _refresh, icon: const Icon(Icons.refresh), tooltip: 'Actualiser'),
-          FilledButton.icon(onPressed: _create, icon: const Icon(Icons.add), label: const Text('Nouvel atelier')),
+          FilledButton.icon(onPressed: _busy ? null : _create, icon: const Icon(Icons.add), label: const Text('Nouvel atelier')),
         ],
         children: [
           if (_busy) const LinearProgressIndicator(),
-          if (_error != null) Notice(_error!, kind: 'warn'),
+          if (_error != null) Notice(_error!, kind: 'error'),
           if (list.isEmpty && !_busy)
             const Card(child: EmptyState(icon: Icons.factory_outlined, text: 'Aucun atelier. Créez-en un pour commencer.')),
           for (final w in list) _tile(context, w),
