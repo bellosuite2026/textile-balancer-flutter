@@ -1,8 +1,11 @@
 name: textile_balancer_flutter
-description: Équilibrage de lignes de production textile/habillement (ALBP) — version Flutter (Web / Android / Windows).
+description: >-
+  Textile Line Balancer — équilibrage de lignes de confection (ALBP), hors ligne
+  d'abord : moteur RPW en Dart + CP-SAT / simulation détaillée via l'API cloud.
+  Une seule base de code pour Windows, Linux, Web et Android.
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.1.0+2
 
 environment:
   sdk: ^3.11.1
@@ -10,17 +13,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.8
+  provider: ^6.1.5
   http: ^1.2.2
+  supabase_flutter: ^2.5.0
+  fl_chart: ^0.70.2
+  intl: ^0.20.2
+  # Stockage local hors ligne (Windows, Linux, Android, Web/IndexedDB), Dart pur
+  hive_ce: ^2.11.0
+  # Import / export
   file_picker: ^8.1.6
   csv: ^6.0.0
   excel: ^4.0.6
+  pdf: ^3.11.1
+  web: ^1.1.0
   path_provider: ^2.1.5
-  open_file: ^3.5.1
-  provider: ^6.1.5
-  fl_chart: ^0.70.2
-  intl: ^0.19.0
-  supabase_flutter: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +39,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/samples/
