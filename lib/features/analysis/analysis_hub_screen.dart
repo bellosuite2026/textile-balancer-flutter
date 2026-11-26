@@ -11,6 +11,7 @@ import '../../state/app_state.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../des/des_screen.dart';
+import '../flow/process_flow_screen.dart';
 import '../optimizer/optimizer_screen.dart';
 import '../twin/twin_screen.dart';
 import '../workshop/plan_editor_screen.dart';
@@ -29,6 +30,8 @@ const analysisTools = [
   AnalysisTool('twin', 'Jumeau numérique 2D', 'Ligne animée, encours, goulot, scénarios « et si », réel vs simulé.', Icons.view_in_ar_outlined),
   AnalysisTool('plan', "Plan d'atelier", 'Murs, allées, zones et machines ; glisser-déposer, liaison machine ↔ station, fond calibré.',
       Icons.map_outlined, needsRun: false),
+  AnalysisTool('flow', 'Process Flow', 'Graphe des précédences par niveaux : SAM, machines, chemin critique, stations et goulot ; export PNG.',
+      Icons.account_tree_outlined),
   AnalysisTool('des', 'Simulation détaillée', 'Événements discrets sur le serveur : variabilité, pannes, absentéisme, '
       'réplications et intervalles de confiance.', Icons.insights_outlined, online: true),
   AnalysisTool('opt', 'Optimiseur Pareto', 'Meilleurs compromis pièces / jour, coût minute, encours, déplacements et effectif ; '
@@ -38,6 +41,7 @@ const analysisTools = [
 Widget? toolScreen(String key, String runId) => switch (key) {
       'twin' => TwinScreen(runId: runId),
       'plan' => const WorkshopPlansScreen(),
+      'flow' => ProcessFlowScreen(runId: runId),
       'des' => DesScreen(runId: runId),
       'opt' => OptimizerScreen(runId: runId),
       _ => null,
