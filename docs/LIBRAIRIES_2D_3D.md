@@ -116,8 +116,20 @@ Inventaire de `web/src/pages/WorkshopPlan.tsx` et `web/src/lib/workshop.ts` (lec
 | Import **DXF** (LINE / LWPOLYLINE / POLYLINE → murs, unité auto mm/cm/m) | non | **fait** |
 | Outil « Déplacer le fond », opacité du fond, ajuster la salle au fond | non | **fait** |
 | Propriétés : machine (repère, état, côté opératrice, station), mur (épaisseur), porte (largeur, issue), allée (principale), zone, convoyeur (hauteur, libellé) | partiel | **fait** |
-| Contrôles (allées trop étroites, chevauchements, distance aux issues) | non | **fait** (chevauchements, largeurs d'allée, machines hors salle, absence d'issue) — distance à l'issue : **non** |
+| Contrôles (allées trop étroites, chevauchements, distance aux issues) | non | **fait** (chevauchements, machine sur mur/poteau, largeurs d'allée, machines hors salle, absence d'issue) — distance à l'issue : **non** |
 | Export PNG / PDF du plan | non | **non** (lot suivant) |
 | Vue 3D du plan (PlanScene3D) | non | **fait** (onglet 3D de l'éditeur, même moteur que le jumeau) |
 | Brouillon local, versions « actuel / projet », synchro `/workshop-plans` | oui (local + synchro) | oui ; contrat inchangé (champs locaux `background_local`, `ui_layers` non envoyés) |
 | Fond d'image synchronisé (Supabase Storage) | non (local) | **non** (le fond reste sur l'appareil) |
+
+## 6. Vérifications
+
+- `test/plan_edit_test.dart` : géométrie, toucher, aimantation, cotes, chemin à pied A*, poignées, historique,
+  contrôles, DXF, contrat API (champs locaux non envoyés).
+- `test/plan_editor_test.dart` : éditeur au bureau (encadrement, alignement, clavier, copier/coller,
+  annuler/rétablir, gomme, calques, cote gardée, chemin à pied, convoyeur, vue 3D) et bascule 2D/3D du jumeau.
+- `test/scene3d_test.dart` : maillages, projection et élimination des faces arrière, toucher 3D, caméra,
+  charge d'une ligne de 40 postes détaillés (< 10 000 triangles), rendu du widget (capture PNG possible avec
+  `SCENE3D_PNG=/tmp/x.png flutter test test/scene3d_test.dart`).
+- Non couvert par les tests : la rastérisation PDF (`printing`, plugin natif / pdf.js), vérifiée par les builds
+  des 4 plateformes en CI.

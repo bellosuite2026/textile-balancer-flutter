@@ -24,8 +24,8 @@ Une seule base de code Flutter pour **Windows, Linux, Web et Android**.
 
 | Outil | Hors ligne | Description |
 |---|---|---|
-| **Jumeau numérique 2D** | oui | ligne animée (paquets, encours, goulot), dispositions ligne / U / libre / plan, scénarios « et si », réel vs simulé |
-| **Plan d'atelier** | oui | murs, allées, zones, machines du catalogue, glisser-déposer, liaison machine ↔ station, fond calibré |
+| **Jumeau numérique 2D / 3D** | oui | ligne animée (paquets, encours, goulot), dispositions ligne / U / libre / plan, scénarios « et si », réel vs simulé ; vue 3D (machines simples / détaillées, opératrices, caméra orbitale) |
+| **Plan d'atelier** | oui | éditeur complet (sélection multiple, gomme, mesure et cotes, chemin à pied, aimantation, calques, convoyeurs, annuler / rétablir, copier / coller, aligner, raccourcis clavier), import image / PDF calibré et DXF, vue 3D, liaison machine ↔ station |
 | **Process Flow** | oui | graphe des précédences par niveaux, SAM / machines, stations et goulot, chemin critique, export PNG |
 | **Simulation détaillée** | non (serveur) | événements discrets : variabilité, pannes, absentéisme, réplications, intervalles de confiance |
 | **Optimiseur Pareto** | non (serveur) | compromis pièces / jour, coût minute, encours, déplacements, effectif ; appliquer une solution |
@@ -60,6 +60,8 @@ ateliers est assurée par les règles RLS côté base.
 
 - Flutter **3.50** (Dart 3.14)
 - `flutter pub get` à la racine du dépôt
+- Windows / Linux : le build CMake télécharge **pdfium** (paquet `printing`, import PDF du plan) ;
+  prévoir l'accès réseau au premier build.
 
 ## Compilation par plateforme
 
@@ -96,7 +98,9 @@ La suite comprend :
   sont dans `test/fixtures/` et sont régénérées avec `tool/parity/gen_fixtures.py`.
 - Tests du parcours hors ligne (`test/offline_flow_test.dart`).
 - Tests d'écrans à trois tailles (téléphone, tablette, bureau) et test de démarrage.
-- Phase 2 : moteur du jumeau, plan d'atelier, graphe du Process Flow ; lecture des réponses
+- Phase 2 : moteur du jumeau, plan d'atelier et son moteur d'édition (`test/plan_edit_test.dart`,
+  `test/plan_editor_test.dart`), moteur 3D et vues 3D (`test/scene3d_test.dart` : géométrie,
+  projection, toucher, charge de 40 postes, rendu de widget), graphe du Process Flow ; lecture des réponses
   serveur (simulation détaillée, optimiseur) sur des fixtures capturées de l'API réelle
   (`test/fixtures/api/`) ; écrans d'analyse aux trois tailles (`test/*_screen_test.dart`).
 
@@ -114,7 +118,7 @@ Cloudflare Pages.
 ```
 lib/
   engine/     moteur d'équilibrage (RPW, diagnostics, simulation, production, jumeau,
-              plan d'atelier, graphe Process Flow) — Dart pur
+              plan d'atelier et son édition, scène 3D, graphe Process Flow) — Dart pur
   data/       stockage local, dépôt, client API, import / export
   state/      état de l'application (modes local / cloud, synchronisation)
   features/   écrans (gammes, calcul, résultats, simulation, production, historique,
@@ -124,4 +128,5 @@ test/         tests et fixtures de parité
 tool/parity/  génération des fixtures depuis le moteur Python de référence
 ```
 
-Feuille de route : voir [docs/ROADMAP.md](docs/ROADMAP.md).
+Feuille de route : voir [docs/ROADMAP.md](docs/ROADMAP.md). Choix des librairies 2D / 3D :
+[docs/LIBRAIRIES_2D_3D.md](docs/LIBRAIRIES_2D_3D.md).
