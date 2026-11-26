@@ -8,20 +8,34 @@
   historique, réglages.
 - Builds Windows, Linux, Web et Android en intégration continue ; déploiement Web.
 
-## Phase 2 — prévue
+## Phase 2 — lot 1 livré (novembre 2026)
+
+Section **Analyse** de l'application (et boutons depuis un résultat de calcul) :
+
+- [x] **Jumeau numérique 2D** : ligne animée (paquets, encours, goulot, ouvrières),
+  dispositions ligne / U / libre / plan, trois scénarios « et si » comparés, réel vs simulé ;
+  moteur Dart à parité avec `engine/simulation.py` (hors ligne), API `/simulate` en ligne.
+- [x] **Plan d'atelier** : grille, murs, allées, zones, poteaux, portes ; bibliothèque des
+  machines du catalogue serveur ; glisser-déposer, rotation ; liaison machine ↔ station ;
+  fond image calibré (2 points + distance) ; stockage local + synchronisation.
+- [x] **Process Flow** (local, hors ligne) : graphe des précédences par niveaux (plus long
+  chemin), nœuds code / libellé / SAM / machine, zoom et déplacement, couleurs par station et
+  goulot depuis un résultat, chemin critique, précédences inconnues et cycles signalés,
+  export PNG.
+- [x] **Simulation détaillée via l'API** (en ligne) : scénarios (efficience, variabilité,
+  pannes MTBF / MTTR, poste, paquets, absentéisme), réplications, intervalles de confiance à
+  95 %, comparaison, production horaire, occupation des stations.
+- [x] **Optimiseur Pareto** (en ligne) : objectifs de l'API (pièces / jour, coût minute,
+  encours, marche + transport), contraintes (effectif, cadence), leviers ; front en tableau
+  et nuage effectif × pièces / jour (couleur = occupation ou encours) ; solution recommandée
+  et compromis équilibré ; « Appliquer » = simulation détaillée + implantation enregistrée.
+
+## Phase 2 — reste à faire
 
 ### Visualisation
-- **Jumeau numérique de la ligne** : d'abord en **2D** (postes, flux, encours, goulot animés),
-  puis en **3D**.
-- **Plan d'atelier** : disposition des postes et des machines, glisser-déposer, lien avec
-  l'équilibrage.
-- **Process Flow** : diagramme du flux des opérations et des précédences.
-
-### Calcul
-- **Interface de l'optimiseur Pareto** : comparaison des solutions (postes, rendement,
-  régularité, ouvriers) et choix d'un compromis.
-- **Simulation détaillée via l'API** (stochastique, pannes, absentéisme) avec restitution
-  dans l'application.
+- **Jumeau numérique 3D**.
+- Process Flow : éditeur de logique par blocs (type FlexSim) de l'application web
+  (source, file, décision, lot…) et exécution par le moteur à événements discrets.
 
 ### Administration et données
 - **Super admin** : gestion des organisations, des utilisateurs et des abonnements.

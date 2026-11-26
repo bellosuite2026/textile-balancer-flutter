@@ -20,6 +20,18 @@ Une seule base de code Flutter pour **Windows, Linux, Web et Android**.
 - **Suivi de production** : saisie horaire sur tablette et tableau de bord.
 - **Historique** des calculs par atelier.
 
+## Fonctionnalités (phase 2, section « Analyse »)
+
+| Outil | Hors ligne | Description |
+|---|---|---|
+| **Jumeau numérique 2D** | oui | ligne animée (paquets, encours, goulot), dispositions ligne / U / libre / plan, scénarios « et si », réel vs simulé |
+| **Plan d'atelier** | oui | murs, allées, zones, machines du catalogue, glisser-déposer, liaison machine ↔ station, fond calibré |
+| **Process Flow** | oui | graphe des précédences par niveaux, SAM / machines, stations et goulot, chemin critique, export PNG |
+| **Simulation détaillée** | non (serveur) | événements discrets : variabilité, pannes, absentéisme, réplications, intervalles de confiance |
+| **Optimiseur Pareto** | non (serveur) | compromis pièces / jour, coût minute, encours, déplacements, effectif ; appliquer une solution |
+
+Les outils serveur affichent « En ligne seulement » en mode local ou sans connexion.
+
 ## Modes d'utilisation
 
 | Mode | Compte | Données | Calculs |
@@ -84,6 +96,9 @@ La suite comprend :
   sont dans `test/fixtures/` et sont régénérées avec `tool/parity/gen_fixtures.py`.
 - Tests du parcours hors ligne (`test/offline_flow_test.dart`).
 - Tests d'écrans à trois tailles (téléphone, tablette, bureau) et test de démarrage.
+- Phase 2 : moteur du jumeau, plan d'atelier, graphe du Process Flow ; lecture des réponses
+  serveur (simulation détaillée, optimiseur) sur des fixtures capturées de l'API réelle
+  (`test/fixtures/api/`) ; écrans d'analyse aux trois tailles (`test/*_screen_test.dart`).
 
 Exemple de contrôle (chemise homme du manuel) : 21 opérations, SAM total 16,50 min,
 N_min = 11 postes à la cadence 1,5 min.
@@ -98,10 +113,12 @@ Cloudflare Pages.
 
 ```
 lib/
-  engine/     moteur d'équilibrage (RPW, diagnostics, simulation, production) — Dart pur
+  engine/     moteur d'équilibrage (RPW, diagnostics, simulation, production, jumeau,
+              plan d'atelier, graphe Process Flow) — Dart pur
   data/       stockage local, dépôt, client API, import / export
   state/      état de l'application (modes local / cloud, synchronisation)
-  features/   écrans (gammes, calcul, résultats, simulation, production, historique…)
+  features/   écrans (gammes, calcul, résultats, simulation, production, historique,
+              analyse : jumeau, plan, Process Flow, simulation détaillée, optimiseur…)
   ui/         thème, coque de navigation, composants communs
 test/         tests et fixtures de parité
 tool/parity/  génération des fixtures depuis le moteur Python de référence
