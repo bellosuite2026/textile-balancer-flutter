@@ -157,6 +157,19 @@ class ParetoSolution {
   String? get bottleneck => mean['bottleneck']?.toString();
 }
 
+/// Objectifs proposés par l'optimiseur serveur (`engine/des/optimize.py`, `OBJECTIVES`).
+const optObjectiveKeys = ['pieces', 'cost_minute', 'wip_avg', 'walk_m'];
+
+/// Leviers que l'optimiseur peut faire varier (`DEFAULTS['vary']`).
+const optLevers = <String, String>{
+  'staffing': 'Effectifs (± opératrices)',
+  'bundle_size': 'Taille des paquets',
+  'wip_cap': 'Encours maximal',
+  'transporters': 'Agents de liaison',
+  'conveyor': 'Cintres / convoyeur',
+  'layout': 'Placement des postes',
+};
+
 class OptResult {
   OptResult(this.raw);
   final Map<String, dynamic> raw;
@@ -174,6 +187,25 @@ class OptResult {
   double get elapsedS => _d(raw['elapsed_s']) ?? 0;
   String get stoppedBy => '${raw['stopped_by'] ?? ''}';
   bool get feasibleFound => raw['feasible_found'] != false;
+
+  /// Solution recommandée (parité avec l'application web) : coût minute le plus bas sans perdre de
+  /// production par rapport à la configuration actuelle ; sinon la plus productive.
+  ParetoSolution? recommended() {
+    final ok = pareto.where((s) => s.feasible).toList();
+    final pool = ok.isNotEmpty ? ok : pareto;
+    if (pool.isEmpty) return null;
+    final b = base?.metric('pieces');
+    final keep = b == null ? pool : pool.where((s) => (s.metric('pieces') ?? 0) >= b).toList();
+    double v(ParetoSolution s, String k) => s.metric(k) ?? double.infinity;
+    if (keep.isNotEmpty) {
+      keep.sort((a, c) {
+        final d = v(a, 'cost_minute').compareTo(v(c, 'cost_minute'));
+        return d != 0 ? d : v(a, 'wip_avg').compareTo(v(c, 'wip_avg'));
+      });
+      return keep.first;
+    }
+    return ([...pool]..sort((a, c) => (c.metric('pieces') ?? 0).compareTo(a.metric('pieces') ?? 0))).first;
+  }
 
   /// Compromis : solution la plus proche du point idéal (indicateurs normalisés sur le front).
   ParetoSolution? compromise([List<String>? keys]) {
@@ -208,6 +240,8 @@ Map<String, dynamic> optConfigBody({
   double costPerMinute = 0.06,
   double? minPerHour,
   int? maxPeople,
+  double? maxWipAvg,
+  double? maxCostMinute,
   Map<String, bool> vary = const {},
 }) =>
     {
@@ -219,5 +253,7 @@ Map<String, dynamic> optConfigBody({
       'constraints': {
         'min_per_hour': minPerHour,
         'max_people': maxPeople,
+        'max_wip_avg': maxWipAvg,
+        'max_cost_minute': maxCostMinute,
       },
     };

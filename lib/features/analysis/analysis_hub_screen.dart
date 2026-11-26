@@ -11,6 +11,7 @@ import '../../state/app_state.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../des/des_screen.dart';
+import '../optimizer/optimizer_screen.dart';
 import '../twin/twin_screen.dart';
 import '../workshop/plan_editor_screen.dart';
 
@@ -30,12 +31,15 @@ const analysisTools = [
       Icons.map_outlined, needsRun: false),
   AnalysisTool('des', 'Simulation détaillée', 'Événements discrets sur le serveur : variabilité, pannes, absentéisme, '
       'réplications et intervalles de confiance.', Icons.insights_outlined, online: true),
+  AnalysisTool('opt', 'Optimiseur Pareto', 'Meilleurs compromis pièces / jour, coût minute, encours, déplacements et effectif ; '
+      'appliquer une solution.', Icons.bolt_outlined, online: true),
 ];
 
 Widget? toolScreen(String key, String runId) => switch (key) {
       'twin' => TwinScreen(runId: runId),
       'plan' => const WorkshopPlansScreen(),
       'des' => DesScreen(runId: runId),
+      'opt' => OptimizerScreen(runId: runId),
       _ => null,
     };
 
