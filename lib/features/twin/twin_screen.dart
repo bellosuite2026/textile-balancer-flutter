@@ -19,6 +19,8 @@ import '../../engine/engine.dart';
 import '../../state/app_state.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../../engine/scene3d.dart' show Twin3DInput;
+import 'scene3d_view.dart';
 import 'twin_painter.dart';
 
 class TwinScreen extends StatefulWidget {
@@ -52,6 +54,8 @@ class _TwinScreenState extends State<TwinScreen> with SingleTickerProviderStateM
   double _speed = 10; // minutes simulées par seconde
   TwinTrace? _trace;
   int? _dragging;
+  bool _view3d = false;
+  bool _detailed = true;
 
   // réel vs simulé
   String? _sessionId;
@@ -395,7 +399,52 @@ class _TwinScreenState extends State<TwinScreen> with SingleTickerProviderStateM
                 ),
             ]),
           ),
-        SizedBox(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Wrap(spacing: 8, runSpacing: 6, crossAxisAlignment: WrapCrossAlignment.center, children: [
+            SegmentedButton<bool>(
+              key: const Key('twin-dim'),
+              segments: const [
+                ButtonSegment(value: false, label: Text('2D'), icon: Icon(Icons.map_outlined)),
+                ButtonSegment(value: true, label: Text('3D'), icon: Icon(Icons.view_in_ar)),
+              ],
+              selected: {_view3d},
+              onSelectionChanged: (v) => setState(() => _view3d = v.first),
+            ),
+            if (_view3d)
+              SegmentedButton<bool>(
+                key: const Key('twin-style'),
+                segments: const [ButtonSegment(value: false, label: Text('Simple')), ButtonSegment(value: true, label: Text('Détaillé'))],
+                selected: {_detailed},
+                onSelectionChanged: (v) => setState(() => _detailed = v.first),
+              ),
+          ]),
+        ),
+        if (_view3d)
+          SizedBox(
+            height: h,
+            child: Twin3DView(
+              key: const Key('twin-3d'),
+              input: Twin3DInput(
+                order: order,
+                positions: (layout['positions'] as Map).cast<String, dynamic>(),
+                bundles: bundles,
+                workersByStation: wbs,
+                bottleneck: (res['bottleneck'] as num?)?.toInt(),
+                plan: _kind == 'plan' ? _planDoc : null,
+                assignment: {
+                  for (final e in ((layout['assignment'] as Map?) ?? const {}).entries) '${e.key}': [for (final id in (e.value as List)) '$id'],
+                },
+                bundleSize: (((res['config'] as Map?)?['bundle_size'] ?? 10) as num).toInt(),
+              ),
+              time: _t,
+              detailed: _detailed,
+              height: h,
+              onPickStation: (sid) => showSnack(context, 'Station S$sid · ${(wbs[sid] ?? const []).join(', ')}'),
+            ),
+          )
+        else
+          SizedBox(
           height: h,
           child: LayoutBuilder(builder: (context, c) {
             final size = Size(c.maxWidth, h);
