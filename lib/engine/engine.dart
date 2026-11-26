@@ -12,6 +12,7 @@ library;
 export 'diagnostics.dart';
 export 'models.dart';
 export 'parsers.dart';
+export 'plan_edit.dart';
 export 'production.dart';
 export 'pyfmt.dart';
 export 'resources.dart';

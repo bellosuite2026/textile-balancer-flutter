@@ -111,6 +111,12 @@ List<(double, double)> machineCorners(Map m) {
     case 'door':
       final w = _n(e['width'], 1);
       return (_n(e['x']) - w / 2, _n(e['y']) - 0.3, _n(e['x']) + w / 2, _n(e['y']) + 0.3);
+    case 'dim':
+    case 'rail':
+      final pts = [for (final p in (e['pts'] as List? ?? const [])) if (p is List && p.length >= 2) (_n(p[0]), _n(p[1]))];
+      if (pts.isEmpty) return (0, 0, 0, 0);
+      return (pts.map((p) => p.$1).reduce(math.min), pts.map((p) => p.$2).reduce(math.min),
+          pts.map((p) => p.$1).reduce(math.max), pts.map((p) => p.$2).reduce(math.max));
     default: // aisle, zone, text
       return (_n(e['x']), _n(e['y']), _n(e['x']) + _n(e['w'], 1), _n(e['y']) + _n(e['h'], 1));
   }
