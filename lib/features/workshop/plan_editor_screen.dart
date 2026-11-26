@@ -220,6 +220,12 @@ class PlanEditorScreenState extends State<PlanEditorScreen> {
     super.dispose();
   }
 
+  /// Plan en cours d'édition et repère écran (tests).
+  @visibleForTesting
+  Map<String, dynamic>? get plan => _plan;
+  @visibleForTesting
+  Offset debugToPx(double x, double y) => _view(_size).toPx(x, y);
+
   Map<String, dynamic> _deepCopy(Map m) => (jsonDecode(jsonEncode(m)) as Map).cast<String, dynamic>();
 
   List<RunRecord> _runs(AppState s) => s.runs.where((r) => r.isDone && (r.balance?.stationDetails.isNotEmpty ?? false)).toList();
